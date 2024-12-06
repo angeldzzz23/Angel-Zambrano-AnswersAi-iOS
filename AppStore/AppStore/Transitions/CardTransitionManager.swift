@@ -101,8 +101,6 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
          }
         
         
-        
-
         let cardViewCopy = createCardViewCopy(cardView: cardView)
         containerView.addSubview(cardViewCopy)
         cardView.isHidden = true

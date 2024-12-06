@@ -200,6 +200,9 @@ class CardView: UIView {
             addDescriptionLabel()
           
         }
+        
+        
+        
     }
     
     // MARK: - Description Label -
