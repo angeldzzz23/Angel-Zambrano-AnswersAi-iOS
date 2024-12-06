@@ -17,83 +17,6 @@
             "backgroundType": "dark"
         },
         {
-            "type": "appCollection",
-            "title": "Watch Entertainment You Love",
-            "subtitle": "The Daily List",
-            "apps": [
-                {
-                    "name": "TikTok - Trends Start Here",
-                    "tagline": "Videos, Music & Live Streams",
-                    "iconName": "entertainment_1",
-                    "cost": "free",
-                    "category": "entertainment",
-                    "hasInAppPurchase": "true",
-                    "alreadyPurchased": "false",
-                    "onDevice": "false"
-                },
-                {
-                    "name": "Netflix",
-                    "tagline": "Start Watching",
-                    "iconName": "entertainment_2",
-                    "cost": "free",
-                    "category": "entertainment",
-                    "hasInAppPurchase": "true",
-                    "alreadyPurchased": "true",
-                    "onDevice": "true"
-                },
-                {
-                    "name": "Hulu: Stream movies & TV shows",
-                    "tagline": "Browse films & watch series",
-                    "iconName": "entertainment_3",
-                    "cost": "free",
-                    "category": "entertainment",
-                    "hasInAppPurchase": "true",
-                    "alreadyPurchased": "false",
-                    "onDevice": "false"
-                },
-                {
-                    "name": "Amazon Prime Video",
-                    "tagline": "Originals, movies, TV, sports",
-                    "iconName": "entertainment_4",
-                    "cost": "free",
-                    "category": "entertainment",
-                    "hasInAppPurchase": "true",
-                    "alreadyPurchased": "true",
-                    "onDevice": "false"
-                },
-                {
-                    "name": "Peacock TV",
-                    "tagline": "Best of Streaming. Best of TV.",
-                    "iconName": "entertainment_5",
-                    "cost": "free",
-                    "category": "entertainment",
-                    "hasInAppPurchase": "true",
-                    "alreadyPurchased": "true",
-                    "onDevice": "true"
-                },
-                {
-                    "name": "Disney+",
-                    "tagline": "Unlimited entertainment",
-                    "iconName": "entertainment_6",
-                    "cost": "free",
-                    "category": "entertainment",
-                    "hasInAppPurchase": "true",
-                    "alreadyPurchased": "true",
-                    "onDevice": "true"
-                },
-                {
-                    "name": "HBO Max: Stream TV & Movies",
-                    "tagline": "Watch entertainment you love",
-                    "iconName": "entertainment_7",
-                    "cost": "free",
-                    "category": "entertainment",
-                    "hasInAppPurchase": "false",
-                    "alreadyPurchased": "false",
-                    "onDevice": "false"
-                }
-            ]
-        },
-        {
             "type": "appArticle",
             "title": "The Incredible, Adorable Sloth Bat",
             "subtitle": "Behind the Scenes",
@@ -113,8 +36,6 @@
             "backgroundImage": "card4",
             "backgroundType": "dark"
         }
-        
-        
         
         
     ]
