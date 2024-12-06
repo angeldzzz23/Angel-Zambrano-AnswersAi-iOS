@@ -14,19 +14,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
             
-            // 2. Create a new UIWindow and pass in a UIWindowScene
-            let window = UIWindow(windowScene: windowScene)
+        // 1. Create a new UIWindow and associate it with the UIWindowScene
+        let window = UIWindow(windowScene: windowScene)
+
+        // 2. Create a UITabBarController
+        let tabBarController = UITabBarController()
+
+        // 3. Add child view controllers
+        let todayView = TodayView()
+        todayView.tabBarItem = UITabBarItem(
+            title: "Today",
+            image: UIImage(systemName: "star"), // Use fallback images here
+            selectedImage: UIImage(named: "star_filled")
+        )
+
+        // Add more view controllers if needed
+        tabBarController.viewControllers = [todayView]
+
+        // 4. Set the UITabBarController as the root view controller
+        window.rootViewController = tabBarController
+
+        // 5. Make the window key and visible
+        self.window = window
+        window.makeKeyAndVisible()
+
             
-            // 3. Create a view hierarchy programmatically
-            let rootVC = TodayView()
-            let navController = UINavigationController(rootViewController: rootVC)
-            
-            // 4. Set the navigation controller as the window's root view controller
-            window.rootViewController = navController
-            
-            // 5. Set the window and call makeKeyAndVisible()
-            self.window = window
-            window.makeKeyAndVisible()
         
     }
 
