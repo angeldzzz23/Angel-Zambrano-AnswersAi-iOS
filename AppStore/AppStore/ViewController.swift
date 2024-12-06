@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     let cardsData = CardsData.shared
 
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
