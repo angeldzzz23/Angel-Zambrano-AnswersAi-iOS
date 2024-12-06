@@ -7,6 +7,8 @@
 
 import Foundation
 
+import UIKit
+
 // adding style gudie
 enum BackgroundType: String {
     case light
