@@ -8,6 +8,8 @@
 import UIKit
 
 
+// TODO: ignore
+// can remove later
 class ViewController: UIViewController {
     let cardsData = CardsData.shared
 

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 enum CardTransitionType {
@@ -219,3 +220,4 @@ extension CardTransitionManager: UIViewControllerTransitioningDelegate {
     }
     
 }
+import UIKit
