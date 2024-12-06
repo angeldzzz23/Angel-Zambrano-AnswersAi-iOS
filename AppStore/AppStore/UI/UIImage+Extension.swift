@@ -5,6 +5,8 @@
 //  Created by angel zambrano on 12/6/24.
 //
 
+import UIKit
+
 extension UIImage {
     
     func imageWith(newSize: CGSize) -> UIImage {
