@@ -82,17 +82,27 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         let containerView = transitionContext.containerView
-        containerView.subviews.forEach({ $0.removeFromSuperview() })
+         containerView.subviews.forEach({ $0.removeFromSuperview() })
+         
+         addBackgroundViews(to: containerView)
+         
+         let fromView = transitionContext.viewController(forKey: .from)
+         let toView = transitionContext.viewController(forKey: .to)
+         
+         // Extract TodayView from UITabBarController if necessary
+         let todayFromView = (fromView as? UITabBarController)?.viewControllers?.first as? TodayView
+         let todayToView = (toView as? UITabBarController)?.viewControllers?.first as? TodayView
+         
+         guard let cardView = (transition == .presentation) ? todayFromView?.selectedCellCardView() :
+                                                             todayToView?.selectedCellCardView()
+         else {
+             transitionContext.completeTransition(false)
+             return
+         }
         
-        addBackgroundViews(to: containerView)
         
-        let fromView = transitionContext.viewController(forKey: .from)
-        let toView = transitionContext.viewController(forKey: .to)
         
-        guard let cardView = (transition == .presentation) ? (fromView as! TodayView).selectedCellCardView() :
-                                                             (toView as! TodayView).selectedCellCardView()
-                            else { return }
-        
+
         let cardViewCopy = createCardViewCopy(cardView: cardView)
         containerView.addSubview(cardViewCopy)
         cardView.isHidden = true

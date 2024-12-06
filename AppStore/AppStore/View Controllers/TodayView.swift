@@ -73,7 +73,7 @@ class TodayView: UIViewController, UIScrollViewDelegate {
         return tableView
     }()
     
-//    let transitionManger = CardTransitionManager()
+    let transitionManger = CardTransitionManager()
     let cardsViewData: [CardViewModel] = CardsData.shared.cards
     
     override var prefersStatusBarHidden: Bool {
@@ -210,13 +210,13 @@ extension TodayView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cardViewModel = cardsViewData[indexPath.row]
-//        let detailView = DetailView(cardViewModel: cardViewModel)
-//        detailView.modalPresentationStyle = .overCurrentContext
-//        detailView.transitioningDelegate = transitionManger
-//        present(detailView, animated: true, completion: nil)
+        let detailView = DetailView(cardViewModel: cardViewModel)
+        detailView.modalPresentationStyle = .overCurrentContext
+        detailView.transitioningDelegate = transitionManger
+        present(detailView, animated: true, completion: nil)
         
         // To wake up the UI, Apple issue with cells with selectionStyle = .none
-//        CFRunLoopWakeUp(CFRunLoopGetCurrent())
+        CFRunLoopWakeUp(CFRunLoopGetCurrent())
     }
     
     func selectedCellCardView() -> CardView? {
