@@ -199,9 +199,6 @@ class CardView: UIView {
             addTopTitleLabels()
             addDescriptionLabel()
           
-        case .appCollection:
-            addTopTitleLabels()
-            addAppCollection()
         }
     }
     
@@ -363,6 +360,7 @@ class CardView: UIView {
             self.appView = nil
         }
 
+        
         switch cardModel.viewType {
         case .appOfTheDay:
             hide(views: [self.titleLabel, self.subtitleLabel, self.descriptionLabel, self.tableView])
@@ -375,11 +373,6 @@ class CardView: UIView {
             addTopTitleLabels()
             addDescriptionLabel()
 
-        case .appCollection:
-            hide(views: [self.featuredTitleLabel, self.descriptionLabel, self.backgroundImageView])
-            addTopTitleLabels()
-            addAppCollection()
-            tableView.reloadData()
         }
     }
     

@@ -85,13 +85,7 @@ class CardsData {
                 return CardViewModel(viewType: cardType)
             
             case "appCollection":
-                guard let title = title,
-                    let subtitle = subtitle,
-                    let apps = apps else { break }
-
-                let appViewModels = apps.compactMap { parseApp(for: $0, viewType: AppViewType.horizontal) }
-                let cardType = CardViewType.appCollection(apps: appViewModels, title: title, subtitle: subtitle)
-                return CardViewModel(viewType: cardType)
+                break;
             
             case "appArticle":
                 guard let bgImage = UIImage(named: bgImageString ?? "card1"),

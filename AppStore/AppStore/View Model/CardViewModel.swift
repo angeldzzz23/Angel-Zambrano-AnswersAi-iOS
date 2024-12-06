@@ -16,7 +16,7 @@ enum CardViewMode {
 
 enum CardViewType {
     case appOfTheDay(bgImage: UIImage, bgType: BackgroundType?, app: AppViewModel)
-    case appCollection(apps: [AppViewModel], title: String, subtitle: String)
+    
     case appArticle(bgImage: UIImage, bgType: BackgroundType?, title: String, subtitle: String, description: String, app: AppViewModel)
   
     var backgroundImage: UIImage? {
@@ -55,10 +55,7 @@ class CardViewModel {
             self.backgroundImage = bgImage.imageWith(newSize: CGSize(width: 375, height: 450))
             self.app = app
             self.backgroundType = bgType ?? .light
-        case .appCollection(let apps, let title, let subtitle):
-            self.appCollection = apps
-            self.title = title
-            self.subtitle = subtitle
+      
         }
     }
 }
