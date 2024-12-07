@@ -16,12 +16,13 @@ class DownLoadNow: UIView {
         imgview.contentMode = .scaleAspectFit
         return imgview
     }()
+    
     private let appName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Apple"
         label.font = UIFont.boldSystemFont(ofSize: 24) // Set the font and size
-        label.textColor = .white // Set the text color
+        label.textColor = .black // Set the text color
         label.textAlignment = .center // Center the text
         return label
     }()
@@ -32,11 +33,15 @@ class DownLoadNow: UIView {
     init(frame: CGRect, cardViewModel: CardViewModel?) {
             self.cardViewModel = cardViewModel
             super.init(frame: frame)
-            setupView() // Call the setup function
+           // Call the setup function
 
             
         }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupView()
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -56,21 +61,23 @@ class DownLoadNow: UIView {
     }
     
     private func configureAppName() {
-        guard let name = cardViewModel?.title else {return}
         self.addSubview(appName)
-        
+        appName.text = "helo world"
+//            
         NSLayoutConstraint.activate([
-            
+            appName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            appName.topAnchor.constraint(equalTo: imageICon.bottomAnchor
+                      )
         ])
-        
 
     }
-    
+
     // add the set up view
     private func setupView() {
         backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         configureImageIcon()
-    
+        configureAppName()
+
     }
     
 }
