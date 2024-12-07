@@ -62,7 +62,7 @@ enum AppViewType {
     var imageSize: CGFloat {
         switch self {
         case .featured:
-            return 90
+            return 40
         case .horizontal:
             return 50
         case .none:

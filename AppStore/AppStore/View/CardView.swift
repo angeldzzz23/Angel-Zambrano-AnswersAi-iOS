@@ -31,14 +31,27 @@ class CardView: UIView {
         return imageView
     }()
     
+    //
+ 
+    
     var featuredTitleCenter: NSLayoutConstraint = NSLayoutConstraint()
+    
     lazy var featuredTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.shadowOffset = CGSize(width: -1, height: 1)
         label.layer.shadowOpacity = 0.1
         label.layer.shadowRadius = 5
+        
         label.textColor = .heroTextColor
+        return label
+    }()
+    
+    lazy var featuredSubtitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = cardModel.backgroundType.subtitleTextColor
+        label.text = "training plans for our next marathon or run around the park"
         return label
     }()
     
@@ -46,6 +59,7 @@ class CardView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = cardModel.backgroundType.titleTextColor
+        
         return label
     }()
     
@@ -54,6 +68,7 @@ class CardView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = cardModel.backgroundType.subtitleTextColor
+        
         return label
     }()
     
@@ -119,7 +134,7 @@ class CardView: UIView {
             bottomConstraint.constant = -15
             
             subtitleTop.constant = 20
-            featuredTitleCenter.constant = 20
+            featuredTitleCenter.constant = featuredTitleconstant
             appViewTop.constant = 25
             
             addShadow()
@@ -133,7 +148,7 @@ class CardView: UIView {
             bottomConstraint.constant = 0
             
             subtitleTop.constant = max(20, topPadding)
-            featuredTitleCenter.constant = max(20, topPadding)
+            featuredTitleCenter.constant = max(featuredTitleconstant, topPadding)
             appViewTop.constant = max(25, topPadding + 5)
             
 
@@ -239,25 +254,30 @@ class CardView: UIView {
         
         NSLayoutConstraint.activate([
             appViewTop,
-            appView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 25.0),
-            appView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -25.0),
-            appView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -25.0)
+            appView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 0),
+            appView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -0),
+            appView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -0)
         ])
+        
         
     }
     
     private func configureBackgroundImage() {
         guard let backgroundImage = cardModel.backgroundImage else { return }
         backgroundImageView.image = backgroundImage
+        
     }
+    
+    let featuredTitleconstant: CGFloat = 64
     
     // MARK: - Featured Title -
     private func addFeaturedTitle() {
 
         containerView.addSubview(featuredTitleLabel)
+        containerView.addSubview(featuredSubtitleLabel)
         
         let topPadding = UIWindow.topPadding
-        var center: CGFloat = 20.0
+        var center: CGFloat = featuredTitleconstant
         
         if cardModel.viewMode == .full {
             center = max(center, topPadding)
@@ -267,15 +287,22 @@ class CardView: UIView {
         
         NSLayoutConstraint.activate([
             featuredTitleCenter,
-            featuredTitleLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20.0),
-            featuredTitleLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.6)
+            featuredTitleLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+        ])
+        
+        NSLayoutConstraint.activate([
+            featuredSubtitleLabel.topAnchor.constraint(equalTo: featuredTitleLabel.bottomAnchor, constant: 8),
+            featuredSubtitleLabel.leftAnchor.constraint(equalTo: featuredTitleLabel.leftAnchor, constant: 0 ),
+
         ])
 
         configureFeaturedTitle()
     }
     
     private func configureFeaturedTitle() {
-        featuredTitleLabel.configureHeroLabel(withText: "APP\nOF THE\nDAY")
+        featuredTitleLabel.configureHeaderLabel(withText: "Hit the ground running\nwith runna")
+        featuredSubtitleLabel.configureAppSubHeaderLabel2(withText: "training plans for our next marathon or run around the park")
+
     }
     
     // MARK: - App Collection -
@@ -362,6 +389,8 @@ class CardView: UIView {
     func show(views: [UIView]) {
         views.forEach{ $0.isHidden = false }
     }
+    
+
     
 }
 

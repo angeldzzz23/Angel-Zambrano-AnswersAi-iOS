@@ -9,7 +9,7 @@
 import UIKit
 
 class AppView: UIView {
-    
+
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -17,10 +17,40 @@ class AppView: UIView {
         return imageView
     }()
     
+    lazy var bottomGradientView: UIView = {
+           let view = UIView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           view.backgroundColor = .clear
+           return view
+       }()
+
+    
+    private func addGradientToBottomDetails() {
+           // Ensure we only add the gradient if we haven't already
+           guard bottomDetails.layer.sublayers?.first(where: { $0 is CAGradientLayer }) == nil else { return }
+           
+           let gradientLayer = CAGradientLayer()
+           gradientLayer.colors = [
+               UIColor.clear.cgColor,
+               UIColor.black.withAlphaComponent(0.7).cgColor
+           ]
+           gradientLayer.locations = [0.3, 1.0] // Start the gradient earlier
+           gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+           gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+           
+           // Set the initial frame to match the bottomDetails view
+           gradientLayer.frame = bottomDetails.bounds
+           
+           // Insert the gradient layer at the bottom of the layer stack
+           bottomDetails.layer.insertSublayer(gradientLayer, at: 0)
+       }
+
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = backgroundType.titleTextColor
+        
         return label
     }()
     
@@ -28,16 +58,12 @@ class AppView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = backgroundType.subtitleTextColor
+       
+
         return label
     }()
     
-    lazy var buttonSubtitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = backgroundType.subtitleTextColor
-        return label
-    }()
-    
+
     lazy var getButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.roundedRect)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +83,16 @@ class AppView: UIView {
         return stackView
     }()
     
+    
+    lazy var bottomDetails: UIView = {
+        let sv = UIView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.backgroundColor = .black
+        sv.isOpaque = true
+        sv.alpha = 0.09
+        return sv
+    }()
+    
     private let appViewType: AppViewType
     var viewModel: AppViewModel
     
@@ -64,7 +100,6 @@ class AppView: UIView {
         didSet {
             titleLabel.textColor = backgroundType.titleTextColor
             subtitleLabel.textColor = backgroundType.subtitleTextColor
-            buttonSubtitleLabel.textColor = backgroundType.subtitleTextColor
         }
     }
  
@@ -83,33 +118,50 @@ class AppView: UIView {
     func setUpViews() {
         configureViews()
         configureLabelsView()
-        backgroundColor = .clear
         
         switch appViewType {
-        case .featured:
+        case .featured: //
             addFeaturedTopViews()
         case .horizontal:
-            addDetailViews()
+            break
         case .none:
             break
         }
+        
     }
+
     
     func configureViews() {
         iconImageView.configureAppIconView(forImage: viewModel.iconImage, size: appViewType.imageSize)
         
         titleLabel.configureAppHeaderLabel(withText: viewModel.name)
-        
+
         subtitleLabel.configureAppSubHeaderLabel(withText: viewModel.category.description.uppercasedFirstLetter)
         
-        buttonSubtitleLabel.configureTinyLabel(withText: "In-App Purchases")
+
         
         getButton.roundedActionButton(withText: viewModel.appAccess.description)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let effectView = bottomGradientView.subviews.first(where: { $0 is UIVisualEffectView }) as? UIVisualEffectView {
+               effectView.frame = bottomGradientView.bounds
+               
+               // Update the gradient layer mask
+               if let gradientLayer = effectView.layer.mask as? CAGradientLayer {
+                   gradientLayer.frame = effectView.bounds
+               }
+           }
+        
+    }
+    
+    // configured top and  bottom label inside of a parent view
     func configureLabelsView() {
         
         labelsView.addSubview(subtitleLabel)
+        
         
         NSLayoutConstraint.activate([
             subtitleLabel.leftAnchor.constraint(equalTo: labelsView.leftAnchor),
@@ -129,114 +181,100 @@ class AppView: UIView {
         
     }
     
+    
+    
     fileprivate func addHorizontalLabelsAndButton() {
+        addSubview(bottomGradientView) // Add this line
+        addSubview(bottomDetails)
         addSubview(labelsView)
         addSubview(getButton)
+        addSubview(iconImageView)
+        
     }
     
     fileprivate func configureHorizontalLabelsAndButton() {
         
+        
         NSLayoutConstraint.activate([
-            labelsView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            labelsView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            labelsView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            bottomGradientView.leftAnchor.constraint(equalTo: self.leftAnchor),
+                      bottomGradientView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            bottomGradientView.bottomAnchor.constraint(equalTo: bottomDetails.bottomAnchor),
+                      bottomGradientView.heightAnchor.constraint(equalToConstant:200), // Adjust height as needed
             
-            getButton.rightAnchor.constraint(equalTo: self.rightAnchor),
-            getButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            iconImageView.heightAnchor.constraint(equalToConstant: appViewType.imageSize),
+            iconImageView.widthAnchor.constraint(equalToConstant: appViewType.imageSize),
+            
+            bottomDetails.leftAnchor.constraint(equalTo: self.leftAnchor),
+            bottomDetails.rightAnchor.constraint(equalTo: self.rightAnchor),
+            bottomDetails.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            bottomDetails.heightAnchor.constraint(equalToConstant: 75),
+            iconImageView.leftAnchor.constraint(equalTo: bottomDetails.leftAnchor, constant: 10),
+            iconImageView.centerYAnchor.constraint(equalTo: bottomDetails.centerYAnchor),
+            
+
+
+            labelsView.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
+            labelsView.centerYAnchor.constraint(equalTo: iconImageView.centerYAnchor),
+
+            getButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
+            getButton.centerYAnchor.constraint(equalTo: self.bottomDetails.centerYAnchor),
             getButton.widthAnchor.constraint(equalToConstant: 76.0)
         ])
         
     }
     
-    fileprivate func addPurchaseAvailableLabelIfNeeded() {
+    
+    private func addBlurToBottomGradientView() {
+        // Ensure we only add the blur if we haven't already
+        guard bottomGradientView.subviews.first(where: { $0 is UIVisualEffectView }) == nil else { return }
         
-        if viewModel.hasInAppPurchase && buttonSubtitleLabel.superview == nil {
-            addSubview(buttonSubtitleLabel)
-            
-            NSLayoutConstraint.activate([
-                buttonSubtitleLabel.centerXAnchor.constraint(equalTo: getButton.centerXAnchor),
-                buttonSubtitleLabel.topAnchor.constraint(equalTo: getButton.bottomAnchor, constant: 3.0)
-            ])
-        }
-
-        if viewModel.hasInAppPurchase == true {
-            buttonSubtitleLabel.isHidden = (viewModel.isOnDevice == true || viewModel.alreadyPurchased == true) ? true : false
-        } else {
-            buttonSubtitleLabel.isHidden = true
-        }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            UIColor.white.withAlphaComponent(0).cgColor,
+            UIColor.white.withAlphaComponent(1).cgColor
+        ]
         
+        let viewEffect = UIBlurEffect(style: .light)
+        let effectView = UIVisualEffectView(effect: viewEffect)
+        
+        // Position the effect view to cover the bottom of the view
+        effectView.frame = CGRect(
+            x: bottomGradientView.bounds.origin.x,
+            y: 0,
+            width: bottomGradientView.bounds.width,
+            height: bottomGradientView.bounds.height
+        )
+        
+        gradientLayer.frame = effectView.bounds
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.3)
+        
+        effectView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        effectView.layer.mask = gradientLayer
+        effectView.isUserInteractionEnabled = false
+        
+        bottomGradientView.addSubview(effectView)
     }
+    
     
 }
 
 extension AppView {
     
     fileprivate func addFeaturedTopViews() {
-        addSubview(iconImageView)
         addHorizontalLabelsAndButton()
+        configureHorizontalLabelsAndButton()
+        addBlurToBottomGradientView() // Add this line
 
-        configureHorizontalLabelsAndButton()
-        configureFeaturedTopViews()
-    }
-    
-    fileprivate func configureFeaturedTopViews() {
+
         
-        NSLayoutConstraint.activate([
-            iconImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            iconImageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            iconImageView.heightAnchor.constraint(equalToConstant: appViewType.imageSize),
-            iconImageView.widthAnchor.constraint(equalTo: iconImageView.heightAnchor)
-        ])
-        
-        configureHorizontalLabelsAndButton()
     }
     
     func configure(with viewModel: AppViewModel) {
         self.viewModel = viewModel
-
         configureViews()
-        switch appViewType {
-        case .horizontal:
-            configureDetailViews()
-        case .featured:
-            configureFeaturedTopViews()
-        case .none:
-            break
-        }
     }
     
 }
 
-// MARK: - Horizontal Type -
-/// Icon, name, category, get button
-extension AppView {
-    
-    fileprivate func addDetailViews() {
-        addSubview(iconImageView)
-        addSubview(labelsView)
-        addSubview(getButton)
-        addPurchaseAvailableLabelIfNeeded()
-        configureDetailViews()
-    }
-    
-    fileprivate func configureDetailViews() {
-        backgroundColor = .white
 
-        NSLayoutConstraint.activate([
-            iconImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7),
-            iconImageView.widthAnchor.constraint(equalTo: iconImageView.heightAnchor),
-            iconImageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            iconImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        
-            labelsView.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 15.0),
-            labelsView.rightAnchor.constraint(equalTo: getButton.leftAnchor, constant: -10.0),
-            labelsView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            
-            getButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            getButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -1.0),
-            getButton.widthAnchor.constraint(equalToConstant: 76.0)
-        ])
-    
-    }
-    
-}

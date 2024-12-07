@@ -7,8 +7,7 @@
 
 import UIKit
 
-
-class TodayView: UIViewController, UIScrollViewDelegate {
+class TodayViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Views
     lazy var scrollView: UIScrollView = {
@@ -35,7 +34,7 @@ class TodayView: UIViewController, UIScrollViewDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        label.text = "TUESDAY, OCTOBER 13"
+        label.text = "Friday, December 6"
         label.textColor = .lightGray
         return label
     }()
@@ -102,7 +101,7 @@ class TodayView: UIViewController, UIScrollViewDelegate {
     
 }
 
-extension TodayView {
+extension TodayViewController {
     
     func configureView() {
         view.backgroundColor = .white
@@ -167,7 +166,7 @@ extension TodayView {
     
 }
 
-extension TodayView: UITableViewDelegate, UITableViewDataSource {
+extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cardsViewData.count
@@ -179,12 +178,14 @@ extension TodayView: UITableViewDelegate, UITableViewDataSource {
         
         let cardViewModel = cardsViewData[indexPath.row]
         
+        
         guard let cellView = cardCell.cellView else {
           
             let appView = AppView(cardViewModel.app)
             if let appViewModel = cardViewModel.app {
                 appView?.configure(with: appViewModel)
             }
+            
             let cardView = CardView(cardModel: cardViewModel, appView: appView)
             cardCell.cellView = cardView
 
@@ -210,7 +211,7 @@ extension TodayView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cardViewModel = cardsViewData[indexPath.row]
-        let detailView = DetailView(cardViewModel: cardViewModel)
+        let detailView = fullDetailViewController(cardViewModel: cardViewModel)
         detailView.modalPresentationStyle = .overCurrentContext
         detailView.transitioningDelegate = transitionManger
         present(detailView, animated: true, completion: nil)

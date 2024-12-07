@@ -7,7 +7,8 @@
 
 import UIKit
 
-class DetailView: UIViewController, UIScrollViewDelegate {
+// this is the viewcontroller that is presented
+class fullDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -90,7 +91,7 @@ class DetailView: UIViewController, UIScrollViewDelegate {
     
 }
 
-extension DetailView {
+extension fullDetailViewController {
     
     func configureView() {
         configureScrollView()
@@ -194,7 +195,7 @@ extension DetailView {
     
 }
 
-extension DetailView {
+extension fullDetailViewController {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yPositionForDismissal: CGFloat = 20.0

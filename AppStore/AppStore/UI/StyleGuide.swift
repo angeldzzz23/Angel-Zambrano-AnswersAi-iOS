@@ -46,15 +46,19 @@ extension UIColor {
 
 extension CGFloat {
     static let heroTextSize: CGFloat = 50.0
-    static let headerTextSize: CGFloat = 28.0
+    static let headerTextSize: CGFloat = 28
     static let subHeaderTextSize: CGFloat = 15.0
     static let appHeaderTextSize: CGFloat = 15.0
     static let appSubHeaderTextSize: CGFloat = 13.0
     static let tinyTextSize: CGFloat = 8.0
+    static let appSubheader: CGFloat = 11
 }
 
 extension UILabel {
   
+    
+  
+    
     func configureHeaderLabel(withText text: String) {
         configure(withText: text, size: .headerTextSize, alignment: .left, lines: 0, weight: .bold)
     }
@@ -75,6 +79,10 @@ extension UILabel {
         configure(withText: text, size: .appSubHeaderTextSize, alignment: .left, lines: 2, weight: .regular)
     }
 
+    func configureAppSubHeaderLabel2(withText text: String) {
+        configure(withText: text, size: .appSubheader, alignment: .left, lines: 2, weight: .medium)
+    }
+    
     func configureTinyLabel(withText text: String) {
         configure(withText: text, size: .tinyTextSize, alignment: .center, lines: 1, weight: .regular)
     }
