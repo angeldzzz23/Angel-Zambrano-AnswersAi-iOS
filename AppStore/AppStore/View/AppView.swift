@@ -9,7 +9,7 @@
 import UIKit
 
 class AppView: UIView {
-    
+
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +63,7 @@ class AppView: UIView {
     lazy var bottomDetails: UIView = {
         let sv = UIView()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.backgroundColor = .purple
+        sv.backgroundColor = .white
         return sv
     }()
     
@@ -213,7 +213,6 @@ extension AppView {
     func configure(with viewModel: AppViewModel) {
         self.viewModel = viewModel
         configureViews()
-        
     }
     
 }
