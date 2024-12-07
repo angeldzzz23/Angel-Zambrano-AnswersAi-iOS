@@ -19,8 +19,6 @@ class DownLoadNowView: UIView {
         return imgview
     }()
 
-    
-    
     private let appName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,8 +62,16 @@ class DownLoadNowView: UIView {
     private func configureUIWithContent() {
         guard let name = cardViewModel?.app?.name else { return }
         appName.text = name
+        
+        guard let description = cardViewModel?.app?.tagline.description.description else { return }
+
+        self.appDescription.text = description
+        
     }
 
+    
+
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupView()
@@ -145,7 +151,7 @@ class DownLoadNowView: UIView {
     }
 
     private func setupView() {
-        backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+        backgroundColor = UIColor.lightGrayBackgroundColor
         configureImageIcon()
         configureAppName()
         configureAppDescription()
