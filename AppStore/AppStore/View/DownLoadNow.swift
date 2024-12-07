@@ -21,11 +21,23 @@ class DownLoadNow: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Apple"
-        label.font = UIFont.boldSystemFont(ofSize: 24) // Set the font and size
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         label.textColor = .black // Set the text color
         label.textAlignment = .center // Center the text
         return label
     }()
+    
+    // adding app description
+    private let appDescription: UILabel = {
+        let label = UILabel()
+        label.textColor = .gray
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.text =  "Home of Apple TV+ and more"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
     
     
     private var cardViewModel: CardViewModel?
@@ -37,6 +49,8 @@ class DownLoadNow: UIView {
 
             
         }
+    
+  
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -55,19 +69,28 @@ class DownLoadNow: UIView {
         NSLayoutConstraint.activate([
             imageICon.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             imageICon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            imageICon.widthAnchor.constraint(equalToConstant: 60),
-            imageICon.heightAnchor.constraint(equalToConstant: 60),
+            imageICon.widthAnchor.constraint(equalToConstant: 70),
+            imageICon.heightAnchor.constraint(equalToConstant: 70),
         ])
+    }
+    
+    private func configureAppDescription() {
+        self.addSubview(appDescription)
+        NSLayoutConstraint.activate([
+            appDescription.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            appDescription.topAnchor.constraint(equalTo: appName.bottomAnchor, constant: 10)
+        ])
+        
     }
     
     private func configureAppName() {
         self.addSubview(appName)
-        appName.text = "helo world"
-//            
+        
+        appName.text = "Apple"
+        
         NSLayoutConstraint.activate([
             appName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            appName.topAnchor.constraint(equalTo: imageICon.bottomAnchor
-                      )
+            appName.topAnchor.constraint(equalTo: imageICon.bottomAnchor, constant: 10),
         ])
 
     }
@@ -77,6 +100,7 @@ class DownLoadNow: UIView {
         backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         configureImageIcon()
         configureAppName()
+        configureAppDescription()
 
     }
     
