@@ -16,10 +16,10 @@ class DownLoadNow: UIView {
         imgview.contentMode = .scaleAspectFit
         return imgview
     }()
-    private let appdescription: UILabel = {
+    private let appName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Download Now"
+        label.text = "Apple"
         label.font = UIFont.boldSystemFont(ofSize: 24) // Set the font and size
         label.textColor = .white // Set the text color
         label.textAlignment = .center // Center the text
@@ -55,13 +55,22 @@ class DownLoadNow: UIView {
         ])
     }
     
+    private func configureAppName() {
+        guard let name = cardViewModel?.title else {return}
+        self.addSubview(appName)
+        
+        NSLayoutConstraint.activate([
+            
+        ])
+        
+
+    }
+    
     // add the set up view
     private func setupView() {
         backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         configureImageIcon()
     
-        
-
     }
     
 }
