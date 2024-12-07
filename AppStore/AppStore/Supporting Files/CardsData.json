@@ -20,8 +20,8 @@
             "type": "appOfTheDay",
             "apps": [
                 {
-                    "name": "Runna: Running training plans",
-                    "tagline": "A Quest for Forgiveness",
+                    "name": "Some App",
+                    "tagline": "",
                     "iconName": "app_of_the_day",
                     "cost": "$4.99",
                     "category": "Some Amazing App",
