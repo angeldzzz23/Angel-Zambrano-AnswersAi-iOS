@@ -75,6 +75,7 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         configureView()
+        presentShareSheet()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,6 +108,8 @@ extension fullDetailViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    
     
     func configureCardView() {
         let appView = AppView(cardViewModel.app)
@@ -246,6 +249,13 @@ extension fullDetailViewController {
             closeButton.setImage(UIImage(named: "darkOnLight"), for: .normal)
         }
         
+    }
+    
+    private func presentShareSheet() {
+        guard let image = UIImage(systemName: "bell"), let url = URL(string: "https://wwww.google.com") else {return}
+        
+        let sharedSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
+        present(sharedSheetVC, animated: true)
     }
 
 }
