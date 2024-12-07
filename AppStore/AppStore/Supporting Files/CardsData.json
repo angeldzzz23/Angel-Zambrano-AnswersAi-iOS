@@ -4,7 +4,7 @@
             "apps": [
                 {
                     "name": "Runna",
-                    "tagline":"Running training plans ",
+                    "tagline":"Running training plans",
                     "iconName": "app_of_the_day",
                     "cost": "$3.99",
                     "category": "5k, 10k, Half, Marathon, Ultra",
