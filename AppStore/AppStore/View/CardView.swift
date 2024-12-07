@@ -47,6 +47,14 @@ class CardView: UIView {
         return label
     }()
     
+    lazy var featuredSubtitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .lightTitleTextColor
+        label.text = "training plans for our next marathon or run around the park"
+        return label
+    }()
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -60,6 +68,7 @@ class CardView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = cardModel.backgroundType.subtitleTextColor
+        
         return label
     }()
     
@@ -264,6 +273,7 @@ class CardView: UIView {
     private func addFeaturedTitle() {
 
         containerView.addSubview(featuredTitleLabel)
+        containerView.addSubview(featuredSubtitleLabel)
         
         let topPadding = UIWindow.topPadding
         var center: CGFloat = constant23
@@ -276,7 +286,13 @@ class CardView: UIView {
         
         NSLayoutConstraint.activate([
             featuredTitleCenter,
-            featuredTitleLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20.0),
+            featuredTitleLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+        ])
+        
+        NSLayoutConstraint.activate([
+            featuredSubtitleLabel.topAnchor.constraint(equalTo: featuredTitleLabel.bottomAnchor, constant: 10),
+            featuredSubtitleLabel.leftAnchor.constraint(equalTo: featuredTitleLabel.leftAnchor, constant: 0 ),
+
         ])
 
         configureFeaturedTitle()
@@ -284,6 +300,8 @@ class CardView: UIView {
     
     private func configureFeaturedTitle() {
         featuredTitleLabel.configureHeaderLabel(withText: "Hit the ground running\nwith runna")
+        featuredSubtitleLabel.configureAppSubHeaderLabel2(withText: "training plans for our next marathon or run around the park")
+
     }
     
     // MARK: - App Collection -

@@ -51,6 +51,7 @@ extension CGFloat {
     static let appHeaderTextSize: CGFloat = 15.0
     static let appSubHeaderTextSize: CGFloat = 13.0
     static let tinyTextSize: CGFloat = 8.0
+    static let appSubheader: CGFloat = 12
 }
 
 extension UILabel {
@@ -78,6 +79,10 @@ extension UILabel {
         configure(withText: text, size: .appSubHeaderTextSize, alignment: .left, lines: 2, weight: .regular)
     }
 
+    func configureAppSubHeaderLabel2(withText text: String) {
+        configure(withText: text, size: .appSubheader, alignment: .left, lines: 2, weight: .regular)
+    }
+    
     func configureTinyLabel(withText text: String) {
         configure(withText: text, size: .tinyTextSize, alignment: .center, lines: 1, weight: .regular)
     }
