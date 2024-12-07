@@ -50,13 +50,11 @@ class CardsData {
             let categoryString = JSON["category"],
             let cost = JSON["cost"],
             let iconName = JSON["iconName"],
-            let image = UIImage(named: iconName),
-            let hasInAppPurchase = JSON["hasInAppPurchase"]?.boolValue(),
-            let alreadyPurchased = JSON["alreadyPurchased"]?.boolValue(),
-            let onDevice = JSON["onDevice"]?.boolValue() else
+            let image = UIImage(named: iconName)
+            else
         { return nil }
       
-        return AppViewModel(name: name, tagline: tagline, category: categoryString, cost: Cost.cost(fromString: cost), hasInAppPurchase: hasInAppPurchase, alreadyPurchased: alreadyPurchased, isOnDevice: onDevice, iconImage: image, appViewType: viewType)
+        return AppViewModel(name: name, tagline: tagline, category: categoryString, cost: Cost.cost(fromString: cost), iconImage: image, appViewType: viewType)
     }
     
     // MARK: - Parse Cards -

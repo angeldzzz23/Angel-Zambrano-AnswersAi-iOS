@@ -23,7 +23,7 @@
                     "name": "Some App",
                     "tagline": "",
                     "iconName": "app_of_the_day",
-                    "cost": "$4.99",
+                    "cost": "free",
                     "category": "Some Amazing App",
                     "hasInAppPurchase": "false",
                     "alreadyPurchased": "false",
