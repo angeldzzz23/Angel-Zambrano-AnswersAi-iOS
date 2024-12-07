@@ -41,19 +41,6 @@ class CardView: UIView {
         label.textColor = .heroTextColor
         return label
     }()
-    
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .singleLine
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 65, bottom: 0, right: 0)
-        tableView.isScrollEnabled = false
-        tableView.registerCell(GenericTableViewCell<AppView>.self)
-        return tableView
-    }()
-    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -148,8 +135,7 @@ class CardView: UIView {
             featuredTitleCenter.constant = max(20, topPadding)
             appViewTop.constant = max(25, topPadding + 5)
             
-            tableView.reloadData()
-            
+
             removeShadow()
         }
     }
@@ -292,18 +278,7 @@ class CardView: UIView {
     }
     
     // MARK: - App Collection -
-    private func addAppCollection() {
-        containerView.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20.0),
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15.0),
-            tableView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20.0),
-            tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20.0)
-        ])
-
-        tableView.reloadData()
-    }
+ 
     
     // MARK: - Top Title Labels -
     private func addTopTitleLabels() {
@@ -366,12 +341,12 @@ class CardView: UIView {
         
         switch cardModel.viewType {
         case .appOfTheDay:
-            hide(views: [self.titleLabel, self.subtitleLabel, self.descriptionLabel, self.tableView])
+            hide(views: [self.titleLabel, self.subtitleLabel, self.descriptionLabel])
             addBackgroundImage(withApp: true)
             addFeaturedTitle()
 
         case .appArticle:
-            hide(views: [self.featuredTitleLabel, self.tableView])
+            hide(views: [self.featuredTitleLabel])
             addBackgroundImage(withApp: false)
             addTopTitleLabels()
             addDescriptionLabel()
