@@ -51,7 +51,7 @@ extension CGFloat {
     static let appHeaderTextSize: CGFloat = 15.0
     static let appSubHeaderTextSize: CGFloat = 13.0
     static let tinyTextSize: CGFloat = 8.0
-    static let appSubheader: CGFloat = 11
+    static let appSubheader: CGFloat = 12
 }
 
 extension UILabel {

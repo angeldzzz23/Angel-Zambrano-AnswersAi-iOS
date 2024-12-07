@@ -268,7 +268,7 @@ class CardView: UIView {
         
     }
     
-    let featuredTitleconstant: CGFloat = 64
+    let featuredTitleconstant: CGFloat = 70
     
     // MARK: - Featured Title -
     private func addFeaturedTitle() {
