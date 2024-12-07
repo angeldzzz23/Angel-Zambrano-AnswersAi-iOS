@@ -17,18 +17,18 @@ enum BackgroundType: String {
     var titleTextColor: UIColor {
         switch self {
         case .dark:
-            return .darkTitleTextColor
-        case .light:
             return .lightTitleTextColor
+        case .light:
+            return .darkTitleTextColor
         }
     }
     
     var subtitleTextColor: UIColor {
         switch self {
         case .dark:
-            return .darkTitleTextColor
-        case .light:
             return .lightSubtitleTextColor
+        case .light:
+            return .darkSubtitleTextColor
         }
     }
 }

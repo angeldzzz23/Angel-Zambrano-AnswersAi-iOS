@@ -13,8 +13,8 @@
                     "onDevice": "false"
                 }
             ],
-            "backgroundImage": "card3",
-            "backgroundType": "dark"
+            "backgroundImage": "card5",
+            "backgroundType": "light"
         },
         {
             "type": "appArticle",
