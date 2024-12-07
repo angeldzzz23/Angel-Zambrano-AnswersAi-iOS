@@ -87,7 +87,9 @@ class AppView: UIView {
     lazy var bottomDetails: UIView = {
         let sv = UIView()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.backgroundColor = .clear
+        sv.backgroundColor = .black
+        sv.isOpaque = true
+        sv.alpha = 0.09
         return sv
     }()
     
@@ -125,7 +127,7 @@ class AppView: UIView {
         case .none:
             break
         }
-     
+        
     }
 
     
@@ -205,7 +207,7 @@ class AppView: UIView {
             bottomDetails.leftAnchor.constraint(equalTo: self.leftAnchor),
             bottomDetails.rightAnchor.constraint(equalTo: self.rightAnchor),
             bottomDetails.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            bottomDetails.heightAnchor.constraint(equalToConstant: 70),
+            bottomDetails.heightAnchor.constraint(equalToConstant: 75),
             iconImageView.leftAnchor.constraint(equalTo: bottomDetails.leftAnchor, constant: 10),
             iconImageView.centerYAnchor.constraint(equalTo: bottomDetails.centerYAnchor),
             
