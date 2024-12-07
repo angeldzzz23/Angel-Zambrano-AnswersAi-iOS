@@ -80,7 +80,7 @@ extension UILabel {
     }
 
     func configureAppSubHeaderLabel2(withText text: String) {
-        configure(withText: text, size: .appSubheader, alignment: .left, lines: 2, weight: .regular)
+        configure(withText: text, size: .appSubheader, alignment: .left, lines: 2, weight: .medium)
     }
     
     func configureTinyLabel(withText text: String) {
