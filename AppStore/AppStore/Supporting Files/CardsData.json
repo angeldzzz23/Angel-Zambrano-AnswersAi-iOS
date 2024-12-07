@@ -3,11 +3,11 @@
             "type": "appOfTheDay",
             "apps": [
                 {
-                    "name": "Monument Valley",
+                    "name": "Runna: Running training plans",
                     "tagline": "A Quest for Forgiveness",
                     "iconName": "app_of_the_day",
                     "cost": "$3.99",
-                    "category": "Sports",
+                    "category": "5k, 10k, Half, Marathon, Ultra",
                     "hasInAppPurchase": "false",
                     "alreadyPurchased": "false",
                     "onDevice": "false"

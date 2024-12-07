@@ -50,7 +50,7 @@ class CardView: UIView {
     lazy var featuredSubtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .lightTitleTextColor
+        label.textColor = cardModel.backgroundType.subtitleTextColor
         label.text = "training plans for our next marathon or run around the park"
         return label
     }()
@@ -134,7 +134,7 @@ class CardView: UIView {
             bottomConstraint.constant = -15
             
             subtitleTop.constant = 20
-            featuredTitleCenter.constant = constant23
+            featuredTitleCenter.constant = featuredTitleconstant
             appViewTop.constant = 25
             
             addShadow()
@@ -148,7 +148,7 @@ class CardView: UIView {
             bottomConstraint.constant = 0
             
             subtitleTop.constant = max(20, topPadding)
-            featuredTitleCenter.constant = max(20, topPadding)
+            featuredTitleCenter.constant = max(featuredTitleconstant, topPadding)
             appViewTop.constant = max(25, topPadding + 5)
             
 
@@ -268,7 +268,8 @@ class CardView: UIView {
         
     }
     
-    let constant23: CGFloat = 62
+    let featuredTitleconstant: CGFloat = 64
+    
     // MARK: - Featured Title -
     private func addFeaturedTitle() {
 
@@ -276,7 +277,7 @@ class CardView: UIView {
         containerView.addSubview(featuredSubtitleLabel)
         
         let topPadding = UIWindow.topPadding
-        var center: CGFloat = constant23
+        var center: CGFloat = featuredTitleconstant
         
         if cardModel.viewMode == .full {
             center = max(center, topPadding)
