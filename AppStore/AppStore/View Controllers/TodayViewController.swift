@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class TodayViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Views
@@ -35,7 +34,7 @@ class TodayViewController: UIViewController, UIScrollViewDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        label.text = "TUESDAY, OCTOBER 13"
+        label.text = "Friday, December 6"
         label.textColor = .lightGray
         return label
     }()

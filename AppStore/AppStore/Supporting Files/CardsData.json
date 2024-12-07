@@ -16,6 +16,23 @@
             "backgroundImage": "card5",
             "backgroundType": "dark"
         },
+        {
+            "type": "appOfTheDay",
+            "apps": [
+                {
+                    "name": "Runna: Running training plans",
+                    "tagline": "A Quest for Forgiveness",
+                    "iconName": "app_of_the_day",
+                    "cost": "$4.99",
+                    "category": "Some Amazing App",
+                    "hasInAppPurchase": "false",
+                    "alreadyPurchased": "false",
+                    "onDevice": "false"
+                }
+            ],
+            "backgroundImage": "card3",
+            "backgroundType": "dark"
+        },
         
         {
             "type": "appArticle",
