@@ -69,8 +69,8 @@ class DownLoadNow: UIView {
         NSLayoutConstraint.activate([
             imageICon.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             imageICon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            imageICon.widthAnchor.constraint(equalToConstant: 70),
-            imageICon.heightAnchor.constraint(equalToConstant: 70),
+            imageICon.widthAnchor.constraint(equalToConstant: 75),
+            imageICon.heightAnchor.constraint(equalToConstant: 75),
         ])
     }
     
@@ -78,7 +78,7 @@ class DownLoadNow: UIView {
         self.addSubview(appDescription)
         NSLayoutConstraint.activate([
             appDescription.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            appDescription.topAnchor.constraint(equalTo: appName.bottomAnchor, constant: 10)
+            appDescription.topAnchor.constraint(equalTo: appName.bottomAnchor, constant: 7)
         ])
         
     }
@@ -90,7 +90,7 @@ class DownLoadNow: UIView {
         
         NSLayoutConstraint.activate([
             appName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            appName.topAnchor.constraint(equalTo: imageICon.bottomAnchor, constant: 10),
+            appName.topAnchor.constraint(equalTo: imageICon.bottomAnchor, constant: 7),
         ])
 
     }

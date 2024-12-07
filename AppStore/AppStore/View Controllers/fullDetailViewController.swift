@@ -119,7 +119,7 @@ extension fullDetailViewController {
         scrollView.addSubview(downloadNowView)
 
         NSLayoutConstraint.activate([
-            downloadNowView.heightAnchor.constraint(equalToConstant: 200),
+            downloadNowView.heightAnchor.constraint(equalToConstant: 225),
             downloadNowView.leftAnchor.constraint(equalTo: view.leftAnchor),
             downloadNowView.rightAnchor.constraint(equalTo: view.rightAnchor),
             downloadNowView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20.0),
