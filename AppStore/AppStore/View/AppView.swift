@@ -190,7 +190,7 @@ class AppView: UIView {
             bottomGradientView.leftAnchor.constraint(equalTo: self.leftAnchor),
                       bottomGradientView.rightAnchor.constraint(equalTo: self.rightAnchor),
                       bottomGradientView.bottomAnchor.constraint(equalTo: bottomDetails.topAnchor),
-                      bottomGradientView.heightAnchor.constraint(equalToConstant: 50), // Adjust height as needed
+                      bottomGradientView.heightAnchor.constraint(equalToConstant: 100), // Adjust height as needed
             
             iconImageView.heightAnchor.constraint(equalToConstant: appViewType.imageSize),
             iconImageView.widthAnchor.constraint(equalToConstant: appViewType.imageSize),

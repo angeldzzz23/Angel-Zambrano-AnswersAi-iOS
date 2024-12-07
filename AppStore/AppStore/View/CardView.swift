@@ -51,7 +51,7 @@ class CardView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = cardModel.backgroundType.titleTextColor
-        label.backgroundColor = .red
+        
         return label
     }()
     
