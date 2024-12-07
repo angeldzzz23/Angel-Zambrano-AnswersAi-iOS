@@ -38,7 +38,7 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    private var downloadNowView = DownLoadNow(frame: .zero, cardViewModel: nil)
+    private var downloadNowView = DownLoadNowView(frame: .zero, cardViewModel: nil)
     
     
     lazy var closeButton: UIButton = {
@@ -114,7 +114,7 @@ extension fullDetailViewController {
     
     func configureDownloadNowView() {
         let cardModel = cardViewModel
-        downloadNowView = DownLoadNow(frame: .zero, cardViewModel: cardModel)
+        downloadNowView = DownLoadNowView(frame: .zero, cardViewModel: cardModel)
         downloadNowView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(downloadNowView)
 

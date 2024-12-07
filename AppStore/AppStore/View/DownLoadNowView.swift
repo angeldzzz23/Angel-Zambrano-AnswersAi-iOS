@@ -8,7 +8,7 @@
 import UIKit
 
 // this is the download now portion
-class DownLoadNow: UIView {
+class DownLoadNowView: UIView {
     
     private var imageICon:  UIImageView = {
         let imgview = UIImageView()
@@ -20,7 +20,6 @@ class DownLoadNow: UIView {
     private let appName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Apple"
         label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         label.textColor = .black // Set the text color
         label.textAlignment = .center // Center the text
@@ -55,8 +54,15 @@ class DownLoadNow: UIView {
             super.init(frame: frame)
            // Call the setup function
 
-            
+        configureUIWithContent()
+        
         }
+    
+    private func configureUIWithContent(){        
+        guard let name = cardViewModel?.app?.name else {return}
+        appName.text = name
+        
+    }
     
   
     
@@ -93,8 +99,6 @@ class DownLoadNow: UIView {
     
     private func configureAppName() {
         self.addSubview(appName)
-        
-        appName.text = "Apple"
         
         NSLayoutConstraint.activate([
             appName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
