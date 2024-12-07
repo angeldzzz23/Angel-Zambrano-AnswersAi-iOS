@@ -90,8 +90,8 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
          let toView = transitionContext.viewController(forKey: .to)
          
          // Extract TodayView from UITabBarController if necessary
-         let todayFromView = (fromView as? UITabBarController)?.viewControllers?.first as? TodayView
-         let todayToView = (toView as? UITabBarController)?.viewControllers?.first as? TodayView
+         let todayFromView = (fromView as? UITabBarController)?.viewControllers?.first as? TodayViewController
+         let todayToView = (toView as? UITabBarController)?.viewControllers?.first as? TodayViewController
          
          guard let cardView = (transition == .presentation) ? todayFromView?.selectedCellCardView() :
                                                              todayToView?.selectedCellCardView()
@@ -129,7 +129,7 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
         ])
         
         if transition == .presentation {
-            let detailView = toView as! DetailView
+            let detailView = toView as! DetailViewController
             containerView.addSubview(detailView.view)
             detailView.viewsAreHidden = true
             closeButton.alpha = transition.next.closeAlpha
@@ -144,7 +144,7 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
             
         } else {
             // Dismissal
-            let detailView = fromView as! DetailView
+            let detailView = fromView as! DetailViewController
             detailView.viewsAreHidden = true
             closeButton.alpha = transition.next.closeAlpha
             

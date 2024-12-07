@@ -17,6 +17,35 @@ class AppView: UIView {
         return imageView
     }()
     
+    lazy var bottomGradientView: UIView = {
+           let view = UIView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           view.backgroundColor = .clear
+           return view
+       }()
+
+    
+    private func addGradientToBottomDetails() {
+           // Ensure we only add the gradient if we haven't already
+           guard bottomDetails.layer.sublayers?.first(where: { $0 is CAGradientLayer }) == nil else { return }
+           
+           let gradientLayer = CAGradientLayer()
+           gradientLayer.colors = [
+               UIColor.clear.cgColor,
+               UIColor.black.withAlphaComponent(0.7).cgColor
+           ]
+           gradientLayer.locations = [0.3, 1.0] // Start the gradient earlier
+           gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+           gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+           
+           // Set the initial frame to match the bottomDetails view
+           gradientLayer.frame = bottomDetails.bounds
+           
+           // Insert the gradient layer at the bottom of the layer stack
+           bottomDetails.layer.insertSublayer(gradientLayer, at: 0)
+       }
+
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,17 +58,12 @@ class AppView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = backgroundType.subtitleTextColor
+       
 
         return label
     }()
     
-    lazy var buttonSubtitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = backgroundType.subtitleTextColor
-        return label
-    }()
-    
+
     lazy var getButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.roundedRect)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +98,6 @@ class AppView: UIView {
         didSet {
             titleLabel.textColor = backgroundType.titleTextColor
             subtitleLabel.textColor = backgroundType.subtitleTextColor
-            buttonSubtitleLabel.textColor = backgroundType.subtitleTextColor
         }
     }
  
@@ -93,7 +116,6 @@ class AppView: UIView {
     func setUpViews() {
         configureViews()
         configureLabelsView()
-        backgroundColor = .clear
         
         switch appViewType {
         case .featured: //
@@ -104,19 +126,29 @@ class AppView: UIView {
             break
         }
     }
+
     
     func configureViews() {
         iconImageView.configureAppIconView(forImage: viewModel.iconImage, size: appViewType.imageSize)
-//        
+        
         titleLabel.configureAppHeaderLabel(withText: viewModel.name)
-//        
+
         subtitleLabel.configureAppSubHeaderLabel(withText: viewModel.category.description.uppercasedFirstLetter)
-//        
-        buttonSubtitleLabel.configureTinyLabel(withText: "In-App Purchases")
-//        
+        
+
+        
         getButton.roundedActionButton(withText: viewModel.appAccess.description)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let gradientLayer = bottomGradientView.layer.sublayers?.first(where: { $0 is CAGradientLayer }) {
+                  gradientLayer.frame = bottomGradientView.bounds
+              }
+    }
+    
+    // configured top and  bottom label inside of a parent view
     func configureLabelsView() {
         
         labelsView.addSubview(subtitleLabel)
@@ -143,6 +175,7 @@ class AppView: UIView {
     
     
     fileprivate func addHorizontalLabelsAndButton() {
+        addSubview(bottomGradientView) // Add this line
         addSubview(bottomDetails)
         addSubview(labelsView)
         addSubview(getButton)
@@ -154,6 +187,11 @@ class AppView: UIView {
         
         
         NSLayoutConstraint.activate([
+            bottomGradientView.leftAnchor.constraint(equalTo: self.leftAnchor),
+                      bottomGradientView.rightAnchor.constraint(equalTo: self.rightAnchor),
+                      bottomGradientView.bottomAnchor.constraint(equalTo: bottomDetails.topAnchor),
+                      bottomGradientView.heightAnchor.constraint(equalToConstant: 50), // Adjust height as needed
+            
             iconImageView.heightAnchor.constraint(equalToConstant: appViewType.imageSize),
             iconImageView.widthAnchor.constraint(equalToConstant: appViewType.imageSize),
             
@@ -176,24 +214,26 @@ class AppView: UIView {
         
     }
     
-    fileprivate func addPurchaseAvailableLabelIfNeeded() {
-        
-        if viewModel.hasInAppPurchase && buttonSubtitleLabel.superview == nil {
-            addSubview(buttonSubtitleLabel)
-            
-            NSLayoutConstraint.activate([
-                buttonSubtitleLabel.centerXAnchor.constraint(equalTo: getButton.centerXAnchor),
-                buttonSubtitleLabel.topAnchor.constraint(equalTo: getButton.bottomAnchor, constant: 3.0)
-            ])
-        }
-
-        if viewModel.hasInAppPurchase == true {
-            buttonSubtitleLabel.isHidden = (viewModel.isOnDevice == true || viewModel.alreadyPurchased == true) ? true : false
-        } else {
-            buttonSubtitleLabel.isHidden = true
-        }
-        
-    }
+    private func addGradientToBottomGradientView() {
+         // Ensure we only add the gradient if we haven't already
+         guard bottomGradientView.layer.sublayers?.first(where: { $0 is CAGradientLayer }) == nil else { return }
+         
+         let gradientLayer = CAGradientLayer()
+         gradientLayer.colors = [
+             UIColor.black.withAlphaComponent(0.7).cgColor,
+             UIColor.clear.cgColor
+         ]
+         gradientLayer.locations = [0.0, 1.0]
+         gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+         gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+         
+         // Set the initial frame to match the bottomGradientView
+         gradientLayer.frame = bottomGradientView.bounds
+         
+         // Insert the gradient layer at the bottom of the layer stack
+         bottomGradientView.layer.insertSublayer(gradientLayer, at: 0)
+     }
+    
     
 }
 
@@ -202,12 +242,10 @@ extension AppView {
     fileprivate func addFeaturedTopViews() {
         addHorizontalLabelsAndButton()
         configureHorizontalLabelsAndButton()
-        configureFeaturedTopViews()
-    }
-    
-    // modified the topt one
-    fileprivate func configureFeaturedTopViews() {
-        configureHorizontalLabelsAndButton()
+        addGradientToBottomGradientView() // Add this line
+
+
+        
     }
     
     func configure(with viewModel: AppViewModel) {

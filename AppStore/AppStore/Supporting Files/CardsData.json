@@ -7,7 +7,7 @@
                     "tagline": "A Quest for Forgiveness",
                     "iconName": "app_of_the_day",
                     "cost": "$3.99",
-                    "category": "puzzle",
+                    "category": "Sports",
                     "hasInAppPurchase": "false",
                     "alreadyPurchased": "false",
                     "onDevice": "false"
@@ -16,6 +16,7 @@
             "backgroundImage": "card5",
             "backgroundType": "light"
         },
+        
         {
             "type": "appArticle",
             "title": "The Incredible, Adorable Sloth Bat",
