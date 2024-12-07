@@ -58,7 +58,7 @@ class DownLoadNowView: UIView {
         
         }
     
-    private func configureUIWithContent(){        
+    private func configureUIWithContent(){
         guard let name = cardViewModel?.app?.name else {return}
         appName.text = name
         

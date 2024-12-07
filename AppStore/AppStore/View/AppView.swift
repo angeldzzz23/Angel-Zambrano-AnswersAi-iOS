@@ -134,7 +134,7 @@ class AppView: UIView {
     func configureViews() {
         iconImageView.configureAppIconView(forImage: viewModel.iconImage, size: appViewType.imageSize)
         
-        titleLabel.configureAppHeaderLabel(withText: viewModel.name)
+        titleLabel.configureAppHeaderLabel(withText: viewModel.name + ":" + viewModel.tagline)
 
         subtitleLabel.configureAppSubHeaderLabel(withText: viewModel.category.description.uppercasedFirstLetter)
         
