@@ -37,6 +37,14 @@ class DownLoadNow: UIView {
         return label
     }()
     
+    //
+    private let downloadButton: UIButton = {
+        let button: UIButton = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "arrow.down.circle")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+    }()
+    
     
     
     
@@ -92,15 +100,29 @@ class DownLoadNow: UIView {
             appName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             appName.topAnchor.constraint(equalTo: imageICon.bottomAnchor, constant: 7),
         ])
-
     }
 
+    private func configureDownloadButton() {
+        self.addSubview(downloadButton)
+        downloadButton.imageView?.contentMode = .scaleAspectFit // Ensure the image scales with the button
+        downloadButton.contentHorizontalAlignment = .fill
+        downloadButton.contentVerticalAlignment = .fill
+        
+        NSLayoutConstraint.activate([
+            downloadButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            downloadButton.topAnchor.constraint(equalTo: appDescription.bottomAnchor, constant: 15),
+            downloadButton.widthAnchor.constraint(equalToConstant: 25), // Set width
+            downloadButton.heightAnchor.constraint(equalToConstant: 25)
+        ])
+    }
+    
     // add the set up view
     private func setupView() {
         backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         configureImageIcon()
         configureAppName()
         configureAppDescription()
+        configureDownloadButton()
 
     }
     
