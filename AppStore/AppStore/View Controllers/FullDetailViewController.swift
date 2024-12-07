@@ -8,7 +8,7 @@
 import UIKit
 
 // this is the viewcontroller that is presented
-class fullDetailViewController: UIViewController, UIScrollViewDelegate {
+class FullDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -95,7 +95,7 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
     
 }
 
-extension fullDetailViewController {
+extension FullDetailViewController {
     
     func configureView() {
         configureScrollView()
@@ -119,7 +119,7 @@ extension fullDetailViewController {
         scrollView.addSubview(downloadNowView)
 
         NSLayoutConstraint.activate([
-            downloadNowView.heightAnchor.constraint(equalToConstant: 225),
+            downloadNowView.heightAnchor.constraint(equalToConstant: 200),
             downloadNowView.leftAnchor.constraint(equalTo: view.leftAnchor),
             downloadNowView.rightAnchor.constraint(equalTo: view.rightAnchor),
             downloadNowView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20.0),
@@ -220,7 +220,7 @@ extension fullDetailViewController {
     
 }
 
-extension fullDetailViewController {
+extension FullDetailViewController {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yPositionForDismissal: CGFloat = 20.0
@@ -273,11 +273,13 @@ extension fullDetailViewController {
         
     }
     
-//    private func presentShareSheet() {
-//        guard let image = UIImage(systemName: "bell"), let url = URL(string: "https://wwww.google.com") else {return}
-//        
-//        let sharedSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
-//        present(sharedSheetVC, animated: true)
-//    }
+    private func presentShareSheet() {
+        guard let image = UIImage(systemName: "bell"), let url = URL(string: "https://wwww.google.com") else {return}
+        
+        let sharedSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
+        present(sharedSheetVC, animated: true)
+    }
+    
 
 }
+

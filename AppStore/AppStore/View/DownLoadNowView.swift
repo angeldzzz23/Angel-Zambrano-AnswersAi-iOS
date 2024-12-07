@@ -8,7 +8,11 @@
 import UIKit
 
 // this is the download now portion
+
 class DownLoadNowView: UIView {
+    
+    
+
     
     private var imageICon:  UIImageView = {
         let imgview = UIImageView()
@@ -45,8 +49,6 @@ class DownLoadNowView: UIView {
     }()
     
     
-    
-    
     private var cardViewModel: CardViewModel?
     
     init(frame: CGRect, cardViewModel: CardViewModel?) {
@@ -63,8 +65,6 @@ class DownLoadNowView: UIView {
         appName.text = name
         
     }
-    
-  
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -94,8 +94,13 @@ class DownLoadNowView: UIView {
             appDescription.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             appDescription.topAnchor.constraint(equalTo: appName.bottomAnchor, constant: 7)
         ])
-        
     }
+    
+    // downloading button
+    @objc private func downloadButtonTapped() {
+        // TODO: implement downoading animation
+
+       }
     
     private func configureAppName() {
         self.addSubview(appName)
@@ -108,6 +113,7 @@ class DownLoadNowView: UIView {
 
     private func configureDownloadButton() {
         self.addSubview(downloadButton)
+        downloadButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
         downloadButton.imageView?.contentMode = .scaleAspectFit // Ensure the image scales with the button
         downloadButton.contentHorizontalAlignment = .fill
         downloadButton.contentVerticalAlignment = .fill
