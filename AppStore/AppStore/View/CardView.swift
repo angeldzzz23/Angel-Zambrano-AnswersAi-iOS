@@ -239,9 +239,9 @@ class CardView: UIView {
         
         NSLayoutConstraint.activate([
             appViewTop,
-            appView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 25.0),
-            appView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -25.0),
-            appView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -25.0)
+            appView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 0),
+            appView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -0),
+            appView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -0)
         ])
         
     }

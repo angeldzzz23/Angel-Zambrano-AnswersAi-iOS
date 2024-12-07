@@ -19,7 +19,7 @@ enum BackgroundType: String {
         case .dark:
             return .lightTitleTextColor
         case .light:
-            return .darkTitleTextColor
+            return .lightTitleTextColor
         }
     }
     

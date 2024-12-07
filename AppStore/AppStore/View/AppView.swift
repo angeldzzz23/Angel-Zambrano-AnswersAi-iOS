@@ -21,6 +21,7 @@ class AppView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = backgroundType.titleTextColor
+        
         return label
     }()
     
@@ -28,6 +29,7 @@ class AppView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = backgroundType.subtitleTextColor
+
         return label
     }()
     
@@ -55,6 +57,14 @@ class AppView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
+    }()
+    
+    
+    lazy var bottomDetails: UIView = {
+        let sv = UIView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.backgroundColor = .purple
+        return sv
     }()
     
     private let appViewType: AppViewType
@@ -89,7 +99,8 @@ class AppView: UIView {
         case .featured:
             addFeaturedTopViews()
         case .horizontal:
-            addDetailViews()
+            break
+//            addDetailViews()
         case .none:
             break
         }
@@ -97,19 +108,20 @@ class AppView: UIView {
     
     func configureViews() {
         iconImageView.configureAppIconView(forImage: viewModel.iconImage, size: appViewType.imageSize)
-        
+//        
         titleLabel.configureAppHeaderLabel(withText: viewModel.name)
-        
+//        
         subtitleLabel.configureAppSubHeaderLabel(withText: viewModel.category.description.uppercasedFirstLetter)
-        
+//        
         buttonSubtitleLabel.configureTinyLabel(withText: "In-App Purchases")
-        
+//        
         getButton.roundedActionButton(withText: viewModel.appAccess.description)
     }
     
     func configureLabelsView() {
         
         labelsView.addSubview(subtitleLabel)
+        
         
         NSLayoutConstraint.activate([
             subtitleLabel.leftAnchor.constraint(equalTo: labelsView.leftAnchor),
@@ -129,20 +141,38 @@ class AppView: UIView {
         
     }
     
+    
+    
     fileprivate func addHorizontalLabelsAndButton() {
+        addSubview(bottomDetails)
         addSubview(labelsView)
         addSubview(getButton)
+        addSubview(iconImageView)
+        
     }
     
     fileprivate func configureHorizontalLabelsAndButton() {
         
+        
         NSLayoutConstraint.activate([
-            labelsView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            labelsView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            labelsView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            iconImageView.heightAnchor.constraint(equalToConstant: appViewType.imageSize),
+            iconImageView.widthAnchor.constraint(equalToConstant: appViewType.imageSize),
             
-            getButton.rightAnchor.constraint(equalTo: self.rightAnchor),
-            getButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            bottomDetails.leftAnchor.constraint(equalTo: self.leftAnchor),
+            bottomDetails.rightAnchor.constraint(equalTo: self.rightAnchor),
+            bottomDetails.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            bottomDetails.heightAnchor.constraint(equalToConstant: 70),
+            iconImageView.leftAnchor.constraint(equalTo: bottomDetails.leftAnchor, constant: 10),
+            iconImageView.centerYAnchor.constraint(equalTo: bottomDetails.centerYAnchor),
+            
+
+
+            
+            labelsView.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
+            labelsView.centerYAnchor.constraint(equalTo: iconImageView.centerYAnchor),
+//            
+            getButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
+            getButton.centerYAnchor.constraint(equalTo: self.bottomDetails.centerYAnchor),
             getButton.widthAnchor.constraint(equalToConstant: 76.0)
         ])
         
@@ -172,7 +202,7 @@ class AppView: UIView {
 extension AppView {
     
     fileprivate func addFeaturedTopViews() {
-        addSubview(iconImageView)
+//        addSubview(iconImageView)
         addHorizontalLabelsAndButton()
 
         configureHorizontalLabelsAndButton()
@@ -182,10 +212,7 @@ extension AppView {
     fileprivate func configureFeaturedTopViews() {
         
         NSLayoutConstraint.activate([
-            iconImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            iconImageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            iconImageView.heightAnchor.constraint(equalToConstant: appViewType.imageSize),
-            iconImageView.widthAnchor.constraint(equalTo: iconImageView.heightAnchor)
+           
         ])
         
         configureHorizontalLabelsAndButton()
@@ -195,48 +222,19 @@ extension AppView {
         self.viewModel = viewModel
 
         configureViews()
-        switch appViewType {
-        case .horizontal:
-            configureDetailViews()
-        case .featured:
-            configureFeaturedTopViews()
-        case .none:
-            break
-        }
-    }
-    
-}
-
-// MARK: - Horizontal Type -
-/// Icon, name, category, get button
-extension AppView {
-    
-    fileprivate func addDetailViews() {
-        addSubview(iconImageView)
-        addSubview(labelsView)
-        addSubview(getButton)
-        addPurchaseAvailableLabelIfNeeded()
-        configureDetailViews()
-    }
-    
-    fileprivate func configureDetailViews() {
-        backgroundColor = .white
-
-        NSLayoutConstraint.activate([
-            iconImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7),
-            iconImageView.widthAnchor.constraint(equalTo: iconImageView.heightAnchor),
-            iconImageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            iconImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         
-            labelsView.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 15.0),
-            labelsView.rightAnchor.constraint(equalTo: getButton.leftAnchor, constant: -10.0),
-            labelsView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            
-            getButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            getButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -1.0),
-            getButton.widthAnchor.constraint(equalToConstant: 76.0)
-        ])
-    
+//        switch appViewType {
+//        case .horizontal:
+//            break
+//        case .featured:
+//            break
+////            configureFeaturedTopViews()
+//        case .none:
+//            break
+//        }
+        
     }
     
 }
+
+
