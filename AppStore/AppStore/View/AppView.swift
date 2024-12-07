@@ -96,11 +96,10 @@ class AppView: UIView {
         backgroundColor = .clear
         
         switch appViewType {
-        case .featured:
+        case .featured: //
             addFeaturedTopViews()
         case .horizontal:
             break
-//            addDetailViews()
         case .none:
             break
         }
@@ -167,10 +166,9 @@ class AppView: UIView {
             
 
 
-            
             labelsView.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
             labelsView.centerYAnchor.constraint(equalTo: iconImageView.centerYAnchor),
-//            
+
             getButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             getButton.centerYAnchor.constraint(equalTo: self.bottomDetails.centerYAnchor),
             getButton.widthAnchor.constraint(equalToConstant: 76.0)
@@ -202,36 +200,19 @@ class AppView: UIView {
 extension AppView {
     
     fileprivate func addFeaturedTopViews() {
-//        addSubview(iconImageView)
         addHorizontalLabelsAndButton()
-
         configureHorizontalLabelsAndButton()
         configureFeaturedTopViews()
     }
     
+    // modified the topt one
     fileprivate func configureFeaturedTopViews() {
-        
-        NSLayoutConstraint.activate([
-           
-        ])
-        
         configureHorizontalLabelsAndButton()
     }
     
     func configure(with viewModel: AppViewModel) {
         self.viewModel = viewModel
-
         configureViews()
-        
-//        switch appViewType {
-//        case .horizontal:
-//            break
-//        case .featured:
-//            break
-////            configureFeaturedTopViews()
-//        case .none:
-//            break
-//        }
         
     }
     
