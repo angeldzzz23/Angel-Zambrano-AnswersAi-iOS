@@ -41,6 +41,7 @@ class CardView: UIView {
         label.textColor = .heroTextColor
         return label
     }()
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -364,35 +365,4 @@ class CardView: UIView {
     
 }
 
-extension CardView: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let appCollection = cardModel.appCollection else { return 0 }
-        return min(4, appCollection.count)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let appCell = tableView.dequeueReusableCell(forIndexPath: indexPath) as GenericTableViewCell<AppView>
-        
-        guard let collectionViewModel = cardModel.appCollection?[indexPath.row] else { return appCell }
-        
-        guard let appCellView = appCell.cellView else {
-            let appView = AppView(collectionViewModel)
-            appCell.cellView = appView
-            return appCell
-        }
-        
-        appCellView.configure(with: collectionViewModel)
-        
-        return appCell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70.0
-    }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-      return UIView()
-    }
-    
-}
