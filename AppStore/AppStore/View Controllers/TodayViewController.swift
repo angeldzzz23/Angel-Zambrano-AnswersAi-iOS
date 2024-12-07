@@ -212,7 +212,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cardViewModel = cardsViewData[indexPath.row]
-        let detailView = DetailViewController(cardViewModel: cardViewModel)
+        let detailView = fullDetailViewController(cardViewModel: cardViewModel)
         detailView.modalPresentationStyle = .overCurrentContext
         detailView.transitioningDelegate = transitionManger
         present(detailView, animated: true, completion: nil)
