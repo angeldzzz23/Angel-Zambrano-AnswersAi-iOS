@@ -290,7 +290,7 @@ class CardView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            featuredSubtitleLabel.topAnchor.constraint(equalTo: featuredTitleLabel.bottomAnchor, constant: 10),
+            featuredSubtitleLabel.topAnchor.constraint(equalTo: featuredTitleLabel.bottomAnchor, constant: 8),
             featuredSubtitleLabel.leftAnchor.constraint(equalTo: featuredTitleLabel.leftAnchor, constant: 0 ),
 
         ])

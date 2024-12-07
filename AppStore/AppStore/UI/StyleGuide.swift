@@ -46,7 +46,7 @@ extension UIColor {
 
 extension CGFloat {
     static let heroTextSize: CGFloat = 50.0
-    static let headerTextSize: CGFloat = 28.0
+    static let headerTextSize: CGFloat = 29
     static let subHeaderTextSize: CGFloat = 15.0
     static let appHeaderTextSize: CGFloat = 15.0
     static let appSubHeaderTextSize: CGFloat = 13.0
