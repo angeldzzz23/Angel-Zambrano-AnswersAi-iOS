@@ -32,7 +32,7 @@ class AppView: UIView {
            let gradientLayer = CAGradientLayer()
            gradientLayer.colors = [
                UIColor.clear.cgColor,
-               UIColor.black.withAlphaComponent(0.7).cgColor
+               UIColor.darkGray.cgColor
            ]
            gradientLayer.locations = [0.3, 1.0] // Start the gradient earlier
            gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
