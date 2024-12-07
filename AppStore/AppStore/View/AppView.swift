@@ -87,7 +87,7 @@ class AppView: UIView {
     lazy var bottomDetails: UIView = {
         let sv = UIView()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.backgroundColor = .white
+        sv.backgroundColor = .clear
         return sv
     }()
     
@@ -143,9 +143,15 @@ class AppView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if let gradientLayer = bottomGradientView.layer.sublayers?.first(where: { $0 is CAGradientLayer }) {
-                  gradientLayer.frame = bottomGradientView.bounds
-              }
+        if let effectView = bottomGradientView.subviews.first(where: { $0 is UIVisualEffectView }) as? UIVisualEffectView {
+               effectView.frame = bottomGradientView.bounds
+               
+               // Update the gradient layer mask
+               if let gradientLayer = effectView.layer.mask as? CAGradientLayer {
+                   gradientLayer.frame = effectView.bounds
+               }
+           }
+        
     }
     
     // configured top and  bottom label inside of a parent view
@@ -189,8 +195,8 @@ class AppView: UIView {
         NSLayoutConstraint.activate([
             bottomGradientView.leftAnchor.constraint(equalTo: self.leftAnchor),
                       bottomGradientView.rightAnchor.constraint(equalTo: self.rightAnchor),
-                      bottomGradientView.bottomAnchor.constraint(equalTo: bottomDetails.topAnchor),
-                      bottomGradientView.heightAnchor.constraint(equalToConstant: 100), // Adjust height as needed
+            bottomGradientView.bottomAnchor.constraint(equalTo: bottomDetails.bottomAnchor),
+                      bottomGradientView.heightAnchor.constraint(equalToConstant:200), // Adjust height as needed
             
             iconImageView.heightAnchor.constraint(equalToConstant: appViewType.imageSize),
             iconImageView.widthAnchor.constraint(equalToConstant: appViewType.imageSize),
@@ -214,25 +220,38 @@ class AppView: UIView {
         
     }
     
-    private func addGradientToBottomGradientView() {
-         // Ensure we only add the gradient if we haven't already
-         guard bottomGradientView.layer.sublayers?.first(where: { $0 is CAGradientLayer }) == nil else { return }
-         
-         let gradientLayer = CAGradientLayer()
-         gradientLayer.colors = [
-             UIColor.black.withAlphaComponent(0.7).cgColor,
-             UIColor.clear.cgColor
-         ]
-         gradientLayer.locations = [0.0, 1.0]
-         gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
-         gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
-         
-         // Set the initial frame to match the bottomGradientView
-         gradientLayer.frame = bottomGradientView.bounds
-         
-         // Insert the gradient layer at the bottom of the layer stack
-         bottomGradientView.layer.insertSublayer(gradientLayer, at: 0)
-     }
+    
+    private func addBlurToBottomGradientView() {
+        // Ensure we only add the blur if we haven't already
+        guard bottomGradientView.subviews.first(where: { $0 is UIVisualEffectView }) == nil else { return }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            UIColor.white.withAlphaComponent(0).cgColor,
+            UIColor.white.withAlphaComponent(1).cgColor
+        ]
+        
+        let viewEffect = UIBlurEffect(style: .light)
+        let effectView = UIVisualEffectView(effect: viewEffect)
+        
+        // Position the effect view to cover the bottom of the view
+        effectView.frame = CGRect(
+            x: bottomGradientView.bounds.origin.x,
+            y: 0,
+            width: bottomGradientView.bounds.width,
+            height: bottomGradientView.bounds.height
+        )
+        
+        gradientLayer.frame = effectView.bounds
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.3)
+        
+        effectView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        effectView.layer.mask = gradientLayer
+        effectView.isUserInteractionEnabled = false
+        
+        bottomGradientView.addSubview(effectView)
+    }
     
     
 }
@@ -242,7 +261,7 @@ extension AppView {
     fileprivate func addFeaturedTopViews() {
         addHorizontalLabelsAndButton()
         configureHorizontalLabelsAndButton()
-        addGradientToBottomGradientView() // Add this line
+        addBlurToBottomGradientView() // Add this line
 
 
         

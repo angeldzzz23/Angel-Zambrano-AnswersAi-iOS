@@ -125,7 +125,7 @@ class CardView: UIView {
             bottomConstraint.constant = -15
             
             subtitleTop.constant = 20
-            featuredTitleCenter.constant = 40
+            featuredTitleCenter.constant = constant23
             appViewTop.constant = 25
             
             addShadow()
@@ -259,13 +259,14 @@ class CardView: UIView {
         
     }
     
+    let constant23: CGFloat = 62
     // MARK: - Featured Title -
     private func addFeaturedTitle() {
 
         containerView.addSubview(featuredTitleLabel)
         
         let topPadding = UIWindow.topPadding
-        var center: CGFloat = 40
+        var center: CGFloat = constant23
         
         if cardModel.viewMode == .full {
             center = max(center, topPadding)
@@ -282,7 +283,7 @@ class CardView: UIView {
     }
     
     private func configureFeaturedTitle() {
-        featuredTitleLabel.configureHeaderLabel(withText: "Hit the ground running\nwith\nrunna")
+        featuredTitleLabel.configureHeaderLabel(withText: "Hit the ground running\nwith runna")
     }
     
     // MARK: - App Collection -
