@@ -39,7 +39,7 @@ class DownLoadNow: UIView {
         return label
     }()
     
-    // added the download app download 
+    // added the download app download
     private let appDownloadIcon: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("download", for: .normal)

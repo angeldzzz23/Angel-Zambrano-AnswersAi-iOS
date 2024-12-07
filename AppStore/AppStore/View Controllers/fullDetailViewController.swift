@@ -38,6 +38,9 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
+    private let downloadNowView = UIView()
+    
+    
     lazy var closeButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +78,7 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         configureView()
-        presentShareSheet()
+//        presentShareSheet()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +112,20 @@ extension fullDetailViewController {
         ])
     }
     
+    func configureDownloadNowView() {
+        downloadNowView.translatesAutoresizingMaskIntoConstraints = false
+        downloadNowView.backgroundColor = .red
+        scrollView.addSubview(downloadNowView)
+
+        NSLayoutConstraint.activate([
+            downloadNowView.heightAnchor.constraint(equalToConstant: 200),
+            downloadNowView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            downloadNowView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            downloadNowView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20.0),
+            downloadNowView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
+        
+    }
     
     
     func configureCardView() {
@@ -176,8 +193,12 @@ extension fullDetailViewController {
             textLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             textLabel.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
             textLabel.topAnchor.constraint(equalTo: cardView!.bottomAnchor, constant: 20.0),
-            textLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 20.0)
+//
         ])
+        
+        
+        // confitu
+        configureDownloadNowView()
         
     }
     
@@ -251,11 +272,11 @@ extension fullDetailViewController {
         
     }
     
-    private func presentShareSheet() {
-        guard let image = UIImage(systemName: "bell"), let url = URL(string: "https://wwww.google.com") else {return}
-        
-        let sharedSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
-        present(sharedSheetVC, animated: true)
-    }
+//    private func presentShareSheet() {
+//        guard let image = UIImage(systemName: "bell"), let url = URL(string: "https://wwww.google.com") else {return}
+//        
+//        let sharedSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
+//        present(sharedSheetVC, animated: true)
+//    }
 
 }
