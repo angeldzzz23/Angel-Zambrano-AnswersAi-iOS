@@ -10,8 +10,12 @@ import UIKit
 // this is the download now portion
 class DownLoadNow: UIView {
     
-   
-    
+    private var imageICon:  UIImageView = {
+        let imgview = UIImageView()
+        imgview.translatesAutoresizingMaskIntoConstraints = false
+        imgview.contentMode = .scaleAspectFit
+        return imgview
+    }()
     private let appdescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,8 +41,27 @@ class DownLoadNow: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // TODO: add constants later
+    private func configureImageIcon() {
+        guard let icon = cardViewModel?.app?.iconImage else {return}
+        self.addSubview(imageICon)
+        imageICon.image = icon
+        NSLayoutConstraint.activate([
+            imageICon.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            imageICon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            imageICon.widthAnchor.constraint(equalToConstant: 60),
+            imageICon.heightAnchor.constraint(equalToConstant: 60),
+        ])
+    }
+    
+    // add the set up view
     private func setupView() {
         backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+        configureImageIcon()
+    
+        
+
     }
     
 }
