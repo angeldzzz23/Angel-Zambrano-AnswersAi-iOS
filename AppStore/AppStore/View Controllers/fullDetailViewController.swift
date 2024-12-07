@@ -38,7 +38,7 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    private let downloadNowView = UIView()
+    private var downloadNowView = DownLoadNow(frame: .zero, cardViewModel: nil)
     
     
     lazy var closeButton: UIButton = {
@@ -113,8 +113,9 @@ extension fullDetailViewController {
     }
     
     func configureDownloadNowView() {
+        let cardModel = cardViewModel
+        downloadNowView = DownLoadNow(frame: .zero, cardViewModel: cardModel)
         downloadNowView.translatesAutoresizingMaskIntoConstraints = false
-        downloadNowView.backgroundColor = .red
         scrollView.addSubview(downloadNowView)
 
         NSLayoutConstraint.activate([
