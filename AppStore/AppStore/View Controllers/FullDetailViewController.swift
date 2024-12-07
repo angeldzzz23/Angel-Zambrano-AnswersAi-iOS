@@ -48,6 +48,42 @@ class FullDetailViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
+    lazy var shareButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+           let originalImage = UIImage(systemName: "square.and.arrow.up")
+           // Scale down the image by resizing
+           let scaledImage = originalImage?.resizeImage(to: CGSize(width: 20, height: 20))
+           button.setImage(scaledImage, for: .normal)
+           // Set Title
+           button.setTitle("Share Story", for: .normal)
+           // Button Styling
+           button.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+           button.tintColor = .systemBlue
+           button.setTitleColor(.systemBlue, for: .normal)
+           button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+           
+           // Align image to the left of the title
+           button.semanticContentAttribute = .forceLeftToRight
+           // Adjust image and title insets for proper alignment
+           button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
+           button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5)
+           // Padding around content
+           button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+           
+           // Adjust vertical alignment
+           button.contentVerticalAlignment = .center  // Ensures both image and text are centered vertically
+           // Button Shape
+           button.layer.cornerRadius = 10
+           button.layer.masksToBounds = true
+           // Action for button tap
+           button.addTarget(self, action: #selector(shareAction), for: .touchUpInside)
+           
+           return button
+        
+    }()
+    
+   
     lazy var textLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -76,8 +112,16 @@ class FullDetailViewController: UIViewController, UIScrollViewDelegate {
       fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     override func viewDidLoad() {
         configureView()
+        
+       // Set button frame or constraints
+       
+       
+        
+        
 //        presentShareSheet()
     }
     
@@ -92,6 +136,13 @@ class FullDetailViewController: UIViewController, UIScrollViewDelegate {
     deinit {
         print("View deinit.")
     }
+    
+    
+    // incorporates the share aspect
+    @objc func shareAction() {
+        presentShareSheet()
+    }
+    
     
 }
 
@@ -123,11 +174,22 @@ extension FullDetailViewController {
             downloadNowView.leftAnchor.constraint(equalTo: view.leftAnchor),
             downloadNowView.rightAnchor.constraint(equalTo: view.rightAnchor),
             downloadNowView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20.0),
-            downloadNowView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            
         ])
         
     }
     
+    func configureShareView() {
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(shareButton)
+        
+        NSLayoutConstraint.activate([
+            shareButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            shareButton.topAnchor.constraint(equalTo: downloadNowView.bottomAnchor, constant: 20.0),
+            shareButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
+        
+    }
     
     func configureCardView() {
         let appView = AppView(cardViewModel.app)
@@ -198,8 +260,8 @@ extension FullDetailViewController {
         ])
         
         
-        // confitu
         configureDownloadNowView()
+        configureShareView()
         
     }
     

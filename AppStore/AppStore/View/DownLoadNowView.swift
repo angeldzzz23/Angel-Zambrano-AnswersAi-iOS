@@ -19,6 +19,8 @@ class DownLoadNowView: UIView {
         return imgview
     }()
 
+    
+    
     private let appName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
