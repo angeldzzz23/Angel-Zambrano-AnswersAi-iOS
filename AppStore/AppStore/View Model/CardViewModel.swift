@@ -39,7 +39,7 @@ class CardViewModel {
     var app: AppViewModel? = nil
     var appCollection: [AppViewModel]? = nil
     var backgroundImage: UIImage? = nil
-    var backgroundType: BackgroundType = .light
+    var backgroundType: BackgroundType = .light // default to light
   
     init(viewType: CardViewType) {
         self.viewType = viewType

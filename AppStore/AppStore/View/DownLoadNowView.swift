@@ -11,7 +11,7 @@ import UIKit
 
 class DownLoadNowView: UIView {
     
-
+//
     private var imageICon: UIImageView = {
         let imgview = UIImageView()
         imgview.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class DownLoadNowView: UIView {
     private let downloadButton: UIButton = {
         let button: UIButton = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "arrow.down.circle")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "detail_download")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
 
