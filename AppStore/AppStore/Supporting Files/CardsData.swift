@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 // adding the cards data
+// parsing the data from json
 class CardsData {
     
     static let instance = CardsData()
@@ -74,16 +75,13 @@ class CardsData {
             let apps = cardsDictionary["apps"] as? [[String: String]]
           
             switch cardTypeString {
-            case "appOfTheDay":
+            case "featured":
                 guard let bgImage = UIImage(named: bgImageString ?? "card1"),
                     let app = apps?.first,
                     let appViewModel = parseApp(for: app, viewType: AppViewType.featured) else { break }
-
+                
                 let cardType = CardViewType.appOfTheDay(bgImage: bgImage, bgType: bgType, app: appViewModel)
                 return CardViewModel(viewType: cardType)
-            
-            case "appCollection":
-                break;
             
             case "appArticle":
                 guard let bgImage = UIImage(named: bgImageString ?? "card1"),
