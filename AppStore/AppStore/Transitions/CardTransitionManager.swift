@@ -88,8 +88,7 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
          
          let fromView = transitionContext.viewController(forKey: .from)
          let toView = transitionContext.viewController(forKey: .to)
-         
-         // Extract TodayView from UITabBarController if necessary
+     
          let todayFromView = (fromView as? UITabBarController)?.viewControllers?.first as? TodayViewController
          let todayToView = (toView as? UITabBarController)?.viewControllers?.first as? TodayViewController
          
@@ -228,4 +227,5 @@ extension CardTransitionManager: UIViewControllerTransitioningDelegate {
     }
     
 }
+
 import UIKit

@@ -11,7 +11,6 @@ import UIKit
 //
 enum AppAccess: CustomStringConvertible {
     
-    
     case onStore(cost: Cost)
 
     var description: String {

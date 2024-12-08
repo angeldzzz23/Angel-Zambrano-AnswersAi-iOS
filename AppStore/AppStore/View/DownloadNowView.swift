@@ -8,10 +8,8 @@
 import UIKit
 
 // this is the download now portion
-
-class DownLoadNowView: UIView {
+class DownloadNowView: UIView {
     
-//
     private var imageICon: UIImageView = {
         let imgview = UIImageView()
         imgview.translatesAutoresizingMaskIntoConstraints = false
