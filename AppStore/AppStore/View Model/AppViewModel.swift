@@ -51,6 +51,7 @@ enum Cost: CustomStringConvertible {
     }
 }
 
+// we can modify the types of app view 
 enum AppViewType {
     case horizontal
     case featured

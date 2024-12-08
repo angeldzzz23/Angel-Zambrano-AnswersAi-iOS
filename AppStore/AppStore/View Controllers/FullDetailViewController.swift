@@ -116,13 +116,7 @@ class FullDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         configureView()
-        
        // Set button frame or constraints
-       
-       
-        
-        
-//        presentShareSheet()
     }
     
     override func viewWillAppear(_ animated: Bool) {
