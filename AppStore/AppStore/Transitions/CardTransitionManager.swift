@@ -129,7 +129,7 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
         ])
         
         if transition == .presentation {
-            let detailView = toView as! fullDetailViewController
+            let detailView = toView as! FullDetailViewController
             containerView.addSubview(detailView.view)
             detailView.viewsAreHidden = true
             closeButton.alpha = transition.next.closeAlpha
@@ -144,7 +144,7 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
             
         } else {
             // Dismissal
-            let detailView = fromView as! fullDetailViewController
+            let detailView = fromView as! FullDetailViewController
             detailView.viewsAreHidden = true
             closeButton.alpha = transition.next.closeAlpha
             

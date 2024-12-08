@@ -24,10 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let todayView = TodayViewController()
         todayView.tabBarItem = UITabBarItem(
             title: "Today",
-            image: UIImage(systemName: "star"), // Use fallback images here
-            selectedImage: UIImage(named: "star_filled")
+            image: UIImage(named: "tabbar_today"), // Use fallback images here
+            selectedImage: UIImage(named: "tabbar_today")
         )
-
         // Add more view controllers if needed
         tabBarController.viewControllers = [todayView]
 

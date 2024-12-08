@@ -1,33 +1,27 @@
 { "cardTiles": [
         {
-            "type": "appOfTheDay",
+            "type": "featured",
             "apps": [
                 {
-                    "name": "Runna: Running training plans",
-                    "tagline": "A Quest for Forgiveness",
+                    "name": "Runna",
+                    "tagline":"Running training plans",
                     "iconName": "app_of_the_day",
                     "cost": "$3.99",
                     "category": "5k, 10k, Half, Marathon, Ultra",
-                    "hasInAppPurchase": "false",
-                    "alreadyPurchased": "false",
-                    "onDevice": "false"
                 }
             ],
             "backgroundImage": "card5",
             "backgroundType": "dark"
         },
         {
-            "type": "appOfTheDay",
+            "type": "featured",
             "apps": [
                 {
-                    "name": "Runna: Running training plans",
-                    "tagline": "A Quest for Forgiveness",
+                    "name": "Some App",
+                    "tagline": "",
                     "iconName": "app_of_the_day",
-                    "cost": "$4.99",
+                    "cost": "free",
                     "category": "Some Amazing App",
-                    "hasInAppPurchase": "false",
-                    "alreadyPurchased": "false",
-                    "onDevice": "false"
                 }
             ],
             "backgroundImage": "card3",
@@ -37,8 +31,8 @@
         {
             "type": "appArticle",
             "title": "The Incredible, Adorable Sloth Bat",
-            "subtitle": "Behind the Scenes",
-            "description": "Tap to read how one of Toca Life: Pets' cutest creatures came to life.",
+            "subtitle": "Lorem Ipsum",
+            "description": "Tap to read how one of Lorem Ipsum: Lorems' cutest creatures came to life.",
             "apps": [
                 {
                     "name": "Toca Life: Pets",
@@ -46,12 +40,10 @@
                     "iconName": "tocaLifeIcon",
                     "cost": "$2.99",
                     "category": "games",
-                    "hasInAppPurchase": "false",
-                    "alreadyPurchased": "false",
-                    "onDevice": "false"
+                    
                 }
             ],
-            "backgroundImage": "card4",
+            "backgroundImage": "card3",
             "backgroundType": "dark"
         }
         

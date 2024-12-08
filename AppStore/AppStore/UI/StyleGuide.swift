@@ -42,6 +42,7 @@ extension UIColor {
     static let lightTitleTextColor: UIColor = .white
     static let darkSubtitleTextColor: UIColor = .gray
     static let darkTitleTextColor: UIColor = .black
+    static let lightGrayBackgroundColor: UIColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
 }
 
 extension CGFloat {

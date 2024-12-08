@@ -8,7 +8,7 @@
 import UIKit
 
 // this is the viewcontroller that is presented
-class fullDetailViewController: UIViewController, UIScrollViewDelegate {
+class FullDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -38,6 +38,9 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
+    private var downloadNowView = DownLoadNowView(frame: .zero, cardViewModel: nil)
+    
+    
     lazy var closeButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +48,42 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
+    lazy var shareButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+           let originalImage = UIImage(systemName: "square.and.arrow.up")
+           // Scale down the image by resizing
+           let scaledImage = originalImage?.resizeImage(to: CGSize(width: 20, height: 20))
+           button.setImage(scaledImage, for: .normal)
+           // Set Title
+           button.setTitle("Share Story", for: .normal)
+           // Button Styling
+           button.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+           button.tintColor = .systemBlue
+           button.setTitleColor(.systemBlue, for: .normal)
+           button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+           
+           // Align image to the left of the title
+           button.semanticContentAttribute = .forceLeftToRight
+           // Adjust image and title insets for proper alignment
+           button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
+           button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5)
+           // Padding around content
+           button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+           
+           // Adjust vertical alignment
+           button.contentVerticalAlignment = .center  // Ensures both image and text are centered vertically
+           // Button Shape
+           button.layer.cornerRadius = 10
+           button.layer.masksToBounds = true
+           // Action for button tap
+           button.addTarget(self, action: #selector(shareAction), for: .touchUpInside)
+           
+           return button
+        
+    }()
+    
+   
     lazy var textLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,8 +112,17 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
       fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     override func viewDidLoad() {
         configureView()
+        
+       // Set button frame or constraints
+       
+       
+        
+        
+//        presentShareSheet()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,9 +137,16 @@ class fullDetailViewController: UIViewController, UIScrollViewDelegate {
         print("View deinit.")
     }
     
+    
+    // incorporates the share aspect
+    @objc func shareAction() {
+        presentShareSheet()
+    }
+    
+    
 }
 
-extension fullDetailViewController {
+extension FullDetailViewController {
     
     func configureView() {
         configureScrollView()
@@ -106,6 +161,34 @@ extension fullDetailViewController {
             scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    func configureDownloadNowView() {
+        let cardModel = cardViewModel
+        downloadNowView = DownLoadNowView(frame: .zero, cardViewModel: cardModel)
+        downloadNowView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(downloadNowView)
+
+        NSLayoutConstraint.activate([
+            downloadNowView.heightAnchor.constraint(equalToConstant: 200),
+            downloadNowView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            downloadNowView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            downloadNowView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20.0),
+            
+        ])
+        
+    }
+    
+    func configureShareView() {
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(shareButton)
+        
+        NSLayoutConstraint.activate([
+            shareButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            shareButton.topAnchor.constraint(equalTo: downloadNowView.bottomAnchor, constant: 20.0),
+            shareButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
+        
     }
     
     func configureCardView() {
@@ -173,8 +256,12 @@ extension fullDetailViewController {
             textLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             textLabel.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
             textLabel.topAnchor.constraint(equalTo: cardView!.bottomAnchor, constant: 20.0),
-            textLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 20.0)
+//
         ])
+        
+        
+        configureDownloadNowView()
+        configureShareView()
         
     }
     
@@ -195,7 +282,7 @@ extension fullDetailViewController {
     
 }
 
-extension fullDetailViewController {
+extension FullDetailViewController {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yPositionForDismissal: CGFloat = 20.0
@@ -247,5 +334,14 @@ extension fullDetailViewController {
         }
         
     }
+    
+    private func presentShareSheet() {
+        guard let image = UIImage(systemName: "bell"), let url = URL(string: "https://wwww.google.com") else {return}
+        
+        let sharedSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
+        present(sharedSheetVC, animated: true)
+    }
+    
 
 }
+
