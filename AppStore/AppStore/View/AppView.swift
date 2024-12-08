@@ -25,26 +25,6 @@ class AppView: UIView {
        }()
 
     
-    private func addGradientToBottomDetails() {
-           // Ensure we only add the gradient if we haven't already
-           guard bottomDetails.layer.sublayers?.first(where: { $0 is CAGradientLayer }) == nil else { return }
-           
-           let gradientLayer = CAGradientLayer()
-           gradientLayer.colors = [
-               UIColor.clear.cgColor,
-               UIColor.darkGray.cgColor
-           ]
-           gradientLayer.locations = [0.3, 1.0] // Start the gradient earlier
-           gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
-           gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
-           
-           // Set the initial frame to match the bottomDetails view
-           gradientLayer.frame = bottomDetails.bounds
-           
-           // Insert the gradient layer at the bottom of the layer stack
-           bottomDetails.layer.insertSublayer(gradientLayer, at: 0)
-       }
-
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -129,6 +109,26 @@ class AppView: UIView {
         }
         
     }
+
+    private func addGradientToBottomDetails() {
+           // Ensure we only add the gradient if we haven't already
+           guard bottomDetails.layer.sublayers?.first(where: { $0 is CAGradientLayer }) == nil else { return }
+           
+           let gradientLayer = CAGradientLayer()
+           gradientLayer.colors = [
+               UIColor.clear.cgColor,
+               UIColor.darkGray.cgColor
+           ]
+           gradientLayer.locations = [0.3, 1.0] // Start the gradient earlier
+           gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+           gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+           
+           // Set the initial frame to match the bottomDetails view
+           gradientLayer.frame = bottomDetails.bounds
+           
+           // Insert the gradient layer at the bottom of the layer stack
+           bottomDetails.layer.insertSublayer(gradientLayer, at: 0)
+       }
 
     
     func configureViews() {
@@ -260,8 +260,6 @@ extension AppView {
         addHorizontalLabelsAndButton()
         configureHorizontalLabelsAndButton()
         addBlurToBottomGradientView() // Add this line
-
-
         
     }
     
