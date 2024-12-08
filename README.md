@@ -4,9 +4,14 @@ video - https://www.youtube.com/watch?v=0ZgzfHMv_fw
 ## contains
 - Ios today UI
 - Retrieving of JSON
-- IOS today animation
-- Downloading animation 
+- IOS today animation (scroll and pressing X work)
+- Downloading animation
 - Sharing
+
+## GIF
+
+![video](https://github.com/user-attachments/assets/82ce5c2e-11b1-4700-aa80-0f3aa7533d52)
+
 
 
 ## How to run
