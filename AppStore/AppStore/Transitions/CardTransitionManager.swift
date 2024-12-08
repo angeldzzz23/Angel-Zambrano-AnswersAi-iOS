@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 
+
 enum CardTransitionType {
     case presentation
     case dismissal
@@ -142,7 +143,7 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
             }
             
         } else {
-            // Dismissal
+            // Dismissing 
             let detailView = fromView as! FullDetailViewController
             detailView.viewsAreHidden = true
             closeButton.alpha = transition.next.closeAlpha

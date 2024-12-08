@@ -137,9 +137,7 @@ class AppView: UIView {
         titleLabel.configureAppHeaderLabel(withText: viewModel.name + ": " + viewModel.tagline)
 
         subtitleLabel.configureAppSubHeaderLabel(withText: viewModel.category.description.uppercasedFirstLetter)
-        
-
-        
+                
         getButton.roundedActionButton(withText: viewModel.appAccess.description)
     }
     
@@ -154,14 +152,12 @@ class AppView: UIView {
                    gradientLayer.frame = effectView.bounds
                }
            }
-        
     }
     
     // configured top and  bottom label inside of a parent view
     func configureLabelsView() {
         
         labelsView.addSubview(subtitleLabel)
-        
         
         NSLayoutConstraint.activate([
             subtitleLabel.leftAnchor.constraint(equalTo: labelsView.leftAnchor),
@@ -180,7 +176,6 @@ class AppView: UIView {
         ])
         
     }
-    
     
     
     fileprivate func addHorizontalLabelsAndButton() {

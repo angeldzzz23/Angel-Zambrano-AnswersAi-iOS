@@ -5,7 +5,7 @@
                 {
                     "name": "Runna",
                     "tagline":"Running training plans",
-                    "iconName": "app_of_the_day",
+                    "iconName": "runner",
                     "cost": "$3.99",
                     "category": "5k, 10k, Half, Marathon, Ultra",
                     "main-title": "Hit the ground running\nwith runnna",
@@ -21,14 +21,14 @@
                 {
                     "name": "Some App",
                     "tagline": "",
-                    "iconName": "app_of_the_day",
+                    "iconName": "runner",
                     "cost": "free",
                     "category": "Some Amazing App",
                     "main-title": "Hit the ground running\nwith runnna",
                     "sub-title": "training plans for our next marathon or run around the park"
                 }
             ],
-            "backgroundImage": "card5",
+            "backgroundImage": "card3",
             "backgroundType": "dark"
         }
         

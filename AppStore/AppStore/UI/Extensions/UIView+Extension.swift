@@ -9,6 +9,7 @@ import UIKit
 
 extension UIView {
     
+    /// Creates a snapshot image of the view's current state.
     func createSnapshot() -> UIImage? {
         
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0.0)
