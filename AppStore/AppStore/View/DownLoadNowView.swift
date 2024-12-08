@@ -32,7 +32,6 @@ class DownLoadNowView: UIView {
         let label = UILabel()
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.text = "Home of Apple TV+ and more"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
