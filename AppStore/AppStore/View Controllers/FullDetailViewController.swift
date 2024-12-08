@@ -224,7 +224,7 @@ extension FullDetailViewController {
         ]
         let firstAttributedString = NSMutableAttributedString(string: firstString, attributes: firstAttributes)
         
-        let secondString = "dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. \n\nLorem Ipsum comes from sections 1.10.32 and 1.10.33 of 'de Finibus Bonorum et Malorum' (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 'Lorem ipsum dolor sit amet..', comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from 'de Finibus Bonorum et Malorum' by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham. Where can I get some? There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+        let secondString = "The art of creating filler text has a rich history dating back centuries. Ipsum Textum, as it is sometimes called, has been a cornerstone of the printing and publishing world since the 16th century, when an enterprising typesetter assembled a jumble of words to simulate meaningful content in mock-up layouts.\nThrough the ages, it has evolved to meet the needs of designers, surviving the transition from hand-set type to modern digital workflows. In the 1980s, software like QuarkXPress and Adobe InDesign brought new life to the tradition, incorporating Ipsum Textum as a go-to solution for designers crafting layouts without final copy.\nUnlike random gibberish, Ipsum Textum has its roots in antiquity. Its origins can be traced to passages of ancient Roman philosophy, including works by luminaries such as Seneca and Cicero. Scholars discovered that phrases found in early Ipsum Textum stem from manuscripts of the Roman Republic, further enriching its mystique.\nOne of the most famous lines, “Textum ipsum dolor sit amet,” emerges from an exploration of Cicero’s De Officiis—a treatise on moral philosophy. While the meaning has been obscured through generations of adaptation, the rhythm and cadence of the text remain appealing to designers.\nToday, Ipsum Textum is an indispensable tool in the worlds of design, web development, and publishing. It offers a visually pleasing arrangement of letters, ensuring focus stays on layout and typography rather than content. From the printing press to digital screens, Ipsum Textum continues to serve as a silent partner in the creative process, free of distraction or unintended humor.\nThere are countless versions of Ipsum Textum available, each tailored to specific industries or aesthetics. Some embrace whimsical or modernized vocabulary, while others strive for classical authenticity. Regardless of its form, Ipsum Textum retains its core mission: to bring clarity to design through the power of placeholder text."
         
         let secondAttributes: [NSAttributedString.Key: Any] = [
             .font : UIFont.systemFont(ofSize: 20, weight: .regular),
@@ -250,7 +250,6 @@ extension FullDetailViewController {
             textLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             textLabel.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
             textLabel.topAnchor.constraint(equalTo: cardView!.bottomAnchor, constant: 20.0),
-//
         ])
         
         
@@ -276,8 +275,10 @@ extension FullDetailViewController {
     
 }
 
+
 extension FullDetailViewController {
 
+    // updating the button/changing it's color
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yPositionForDismissal: CGFloat = 20.0
         var yContentOffset = scrollView.contentOffset.y
