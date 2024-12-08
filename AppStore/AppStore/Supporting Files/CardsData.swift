@@ -74,9 +74,8 @@ class CardsData {
             let bgImageString = cardsDictionary["backgroundImage"] as? String
             let bgTypeString = cardsDictionary["backgroundType"] as? String
             let bgType = BackgroundType(rawValue: bgTypeString ?? "")
-            let title = cardsDictionary["title"] as? String
-            let subtitle = cardsDictionary["subtitle"] as? String
-            let description = cardsDictionary["description"] as? String
+            
+            
             let apps = cardsDictionary["apps"] as? [[String: String]]
           
             switch cardTypeString {
@@ -86,17 +85,6 @@ class CardsData {
                     let appViewModel = parseApp(for: app, viewType: AppViewType.featured) else { break }
                 
                 let cardType = CardViewType.appOfTheDay(bgImage: bgImage, bgType: bgType, app: appViewModel)
-                return CardViewModel(viewType: cardType)
-            
-            case "appArticle":
-                guard let bgImage = UIImage(named: bgImageString ?? "card1"),
-                    let title = title,
-                    let subtitle = subtitle,
-                    let app = apps?.first,
-                    let appViewModel = parseApp(for: app, viewType: AppViewType.none),
-                    let description = description else { break }
-                
-                let cardType = CardViewType.appArticle(bgImage: bgImage, bgType: bgType, title: title, subtitle: subtitle, description: description, app: appViewModel)
                 return CardViewModel(viewType: cardType)
             default:
                 return nil

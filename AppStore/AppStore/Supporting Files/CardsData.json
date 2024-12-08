@@ -8,7 +8,7 @@
                     "iconName": "app_of_the_day",
                     "cost": "$3.99",
                     "category": "5k, 10k, Half, Marathon, Ultra",
-                    "main-title": "Hit the ground running with runnna",
+                    "main-title": "Hit the ground running\nwith runnna",
                     "sub-title": "training plans for our next marathon or run around the park"
                 }
             ],
@@ -24,11 +24,11 @@
                     "iconName": "app_of_the_day",
                     "cost": "free",
                     "category": "Some Amazing App",
-                    "main-title": "Hit the ground running with runnna",
+                    "main-title": "Hit the ground running\nwith runnna",
                     "sub-title": "training plans for our next marathon or run around the park"
                 }
             ],
-            "backgroundImage": "card3",
+            "backgroundImage": "card5",
             "backgroundType": "dark"
         }
         
