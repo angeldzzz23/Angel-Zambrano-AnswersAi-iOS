@@ -196,10 +196,6 @@ class CardView: UIView {
             addBackgroundImage(withApp: true)
             addFeaturedTitle()
           
-        case .appArticle:
-            addBackgroundImage(withApp: false)
-            addTopTitleLabels()
-            addDescriptionLabel()
           
         }
         
@@ -380,12 +376,7 @@ class CardView: UIView {
             addBackgroundImage(withApp: true)
             addFeaturedTitle()
 
-        case .appArticle:
-            hide(views: [self.featuredTitleLabel])
-            addBackgroundImage(withApp: false)
-            addTopTitleLabels()
-            addDescriptionLabel()
-
+ 
         }
     }
     
