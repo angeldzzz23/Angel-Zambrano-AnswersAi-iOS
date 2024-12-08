@@ -83,13 +83,17 @@ class AppViewModel {
     let cost: Cost
     let appAccess: AppAccess
     let appViewType: AppViewType
+    let mainTitle: String
+    let subtitle: String
 
-    init(name: String, tagline: String, category: String, cost: Cost, iconImage: UIImage, appViewType: AppViewType) {
+    init(name: String, tagline: String, category: String, cost: Cost, iconImage: UIImage, appViewType: AppViewType, mainTitle: String, subtitle: String) {
         self.iconImage = iconImage
         self.name = name
         self.tagline = tagline
         self.category = category
         self.cost = cost
+        self.mainTitle = mainTitle
+        self.subtitle = subtitle
         
         self.appAccess = false ? (false ? .onDevice : .onCloud) : .onStore(cost: cost)
         self.appViewType = appViewType

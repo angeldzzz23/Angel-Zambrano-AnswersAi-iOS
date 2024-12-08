@@ -8,6 +8,8 @@
                     "iconName": "app_of_the_day",
                     "cost": "$3.99",
                     "category": "5k, 10k, Half, Marathon, Ultra",
+                    "main-title": "Hit the ground running with runnna",
+                    "sub-title": "training plans for our next marathon or run around the park"
                 }
             ],
             "backgroundImage": "card5",
@@ -22,25 +24,8 @@
                     "iconName": "app_of_the_day",
                     "cost": "free",
                     "category": "Some Amazing App",
-                }
-            ],
-            "backgroundImage": "card3",
-            "backgroundType": "dark"
-        },
-        
-        {
-            "type": "appArticle",
-            "title": "The Incredible, Adorable Sloth Bat",
-            "subtitle": "Lorem Ipsum",
-            "description": "Tap to read how one of Lorem Ipsum: Lorems' cutest creatures came to life.",
-            "apps": [
-                {
-                    "name": "Toca Life: Pets",
-                    "tagline": "Meet friends with paws & claws",
-                    "iconName": "tocaLifeIcon",
-                    "cost": "$2.99",
-                    "category": "games",
-                    
+                    "main-title": "Hit the ground running with runnna",
+                    "sub-title": "training plans for our next marathon or run around the park"
                 }
             ],
             "backgroundImage": "card3",

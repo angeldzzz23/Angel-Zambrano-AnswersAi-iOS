@@ -51,11 +51,16 @@ class CardsData {
             let categoryString = JSON["category"],
             let cost = JSON["cost"],
             let iconName = JSON["iconName"],
-            let image = UIImage(named: iconName)
+            let image = UIImage(named: iconName),
+              let mainTitle = JSON["main-title"],
+              let subTitle = JSON["sub-title"]
+                
             else
         { return nil }
       
-        return AppViewModel(name: name, tagline: tagline, category: categoryString, cost: Cost.cost(fromString: cost), iconImage: image, appViewType: viewType)
+        
+        return AppViewModel(name: name, tagline: tagline, category: categoryString, cost:  Cost.cost(fromString: cost), iconImage: image, appViewType: viewType, mainTitle: mainTitle, subtitle: subTitle)
+     
     }
     
     // MARK: - Parse Cards -
