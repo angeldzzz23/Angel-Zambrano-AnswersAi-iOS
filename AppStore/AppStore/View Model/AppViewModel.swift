@@ -8,23 +8,21 @@
 import Foundation
 import UIKit
 
+//
 enum AppAccess: CustomStringConvertible {
-    case onCloud
-    case onDevice
+    
+    
     case onStore(cost: Cost)
 
     var description: String {
         switch self {
-        case .onCloud:
-            return "detail_download"
-        case .onDevice:
-            return "OPEN"
         case .onStore(let cost):
             return cost.description
         }
     }
 }
 
+// being able to add the cost of make i free
 enum Cost: CustomStringConvertible {
     case free
     case paid(cost: Float)
@@ -95,7 +93,7 @@ class AppViewModel {
         self.mainTitle = mainTitle
         self.subtitle = subtitle
         
-        self.appAccess = false ? (false ? .onDevice : .onCloud) : .onStore(cost: cost)
+        self.appAccess = .onStore(cost: cost)
         self.appViewType = appViewType
     }
 }

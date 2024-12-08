@@ -302,17 +302,17 @@ class CardView: UIView {
     private func configureFeaturedTitle() {
         
         guard let title = cardModel.app?.mainTitle else {return}
-        guard let subtitle = cardModel.app?.mainTitle else {return}
+        guard let subtitle = cardModel.app?.subtitle else {return}
               
         featuredTitleLabel.configureHeaderLabel(withText: title)
         
         
         
-        featuredSubtitleLabel.configureAppSubHeaderLabel2(withText: "training plans for our next marathon or run around the park")
+        featuredSubtitleLabel.configureAppSubHeaderLabel2(withText: subtitle)
 
     }
     
-    // MARK: - App Collection -
+
  
     
     // MARK: - Top Title Labels -
